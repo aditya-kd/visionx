@@ -4,6 +4,8 @@ body {
   margin: 0;
 }
 
+/* Navbar */
+
 .navbar-ul {
   font-family: 'Space Grotesk', sans-serif;
   font-weight:600;
@@ -11,6 +13,10 @@ body {
 
 .navbar-li {
   padding: 16px;
+}
+
+.navbar-li:hover {
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
 
