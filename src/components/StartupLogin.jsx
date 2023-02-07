@@ -61,7 +61,7 @@ const LoginArea = () => {
 const LoginHeader = () => {
   return (
     <Box textAlign='center'>
-      <Heading fontSize={'28px'}>Welcome to WE-GenX</Heading>
+      <Heading fontSize={'28px'}>Welcome to Vision-X</Heading>
       <Text fontSize={'11px'} color={"grey"}>
         Welcome back! Please enter your details.
       </Text>

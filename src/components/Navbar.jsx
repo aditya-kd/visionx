@@ -66,8 +66,7 @@ export default function Navbar() {
               bgColor={"#FFBF23"}
               color={"white"}
               size={"sm"}
-              variant={"outline"}
-              outlineColor={"black"}
+              variant={"ghost"}
               _hover={{ bgColor: "#FFD369" }}
             >
               Contact Us
@@ -102,7 +101,7 @@ export default function Navbar() {
             <DrawerOverlay />
             <DrawerContent>
               <DrawerCloseButton />
-              <DrawerHeader>Welcome!</DrawerHeader>
+              <DrawerHeader>Vision-X</DrawerHeader>
 
               <DrawerBody>
                 <UnorderedList
@@ -112,27 +111,26 @@ export default function Navbar() {
                   onClick={onClose}
                 >
                   <Link to={"/start-ups"}>
-                    <li className="navbar-li">Start-ups</li>
+                    <li className="drawer-li">Start-ups</li>
                   </Link>
                   <Link to={"/partners"}>
-                    <li className="navbar-li">Partners</li>
+                    <li className="drawer-li">Partners</li>
                   </Link>
                   <Link to={"/investors"}>
-                    <li className="navbar-li">Investors</li>
+                    <li className="drawer-li">Investors</li>
                   </Link>
                   <Link to={"/blog"}>
-                    <li className="navbar-li">Blog</li>
+                    <li className="drawer-li">Blog</li>
                   </Link>
                   <Link to={"/about"}>
-                    <li className="navbar-li">About</li>
+                    <li className="drawer-li">About</li>
                   </Link>
                   <ListItem p={"2"}>
                     <Button
                       bgColor={"#FFBF23"}
                       color={"white"}
                       size={"sm"}
-                      variant={"outline"}
-                      outlineColor={"black"}
+                      variant={"ghost"}
                       _hover={{ bgColor: "#FFD369" }}
                     >
                       Contact Us
