@@ -7,6 +7,8 @@ import Partners from "./components/Partners";
 import Investors from "./components/Investors";
 import Blog from "./components/Blog";
 import About from "./components/About";
+import InvestorLogin from "./components/InvestorLogin";
+import StartupLogin from "./components/StartupLogin";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route path="/investors" element={<Investors />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/about" element={<About />} />
+          <Route path="/investorlogin" element={<InvestorLogin />} />
+          <Route path="startuplogin" element={<StartupLogin />} />
         </Routes>
       </BrowserRouter>
     </Box>
