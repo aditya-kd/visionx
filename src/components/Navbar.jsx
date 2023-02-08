@@ -103,7 +103,7 @@ export default function Navbar() {
               <DrawerCloseButton />
               <DrawerHeader>Vision-X</DrawerHeader>
 
-              <DrawerBody>
+              <DrawerBody p={"0"}>
                 <UnorderedList
                   listStyleType={"none"}
                   className="navbar-ul"

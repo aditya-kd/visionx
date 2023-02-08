@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
 
 body {
   margin: 0;
@@ -21,4 +23,28 @@ body {
 
 .drawer-li {
   padding: 8px;
+}
+
+/* Landing Page */
+
+.landing-page {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.page-heading {
+  font-weight: 600;
+}
+
+.page-content {
+  font-weight: 400;
+}
+
+.page-footer {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.second-half {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
 }
