@@ -46,13 +46,13 @@ export default function Navbar() {
           display={"flex"}
           className="navbar-ul"
         >
-          <Link to={"/start-ups"}>
+          <Link to={"/StartupLogin"}>
             <li className="navbar-li">Start-ups</li>
           </Link>
           <Link to={"/partners"}>
             <li className="navbar-li">Partners</li>
           </Link>
-          <Link to={"/investors"}>
+          <Link to={"/investorlogin"}>
             <li className="navbar-li">Investors</li>
           </Link>
           <Link to={"/blog"}>
