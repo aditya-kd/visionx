@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {
   ColorModeProvider,
   CSSReset,
@@ -78,19 +79,101 @@ const LoginHeader = () => {
 };
 
 const LoginForm = () => {
+  const [formData, setFormData] = useState({});
+const[otpButton, setOtpButton] = useState("disabled")
+const[error , setError] = useState(false)
+
+
+
+const handleChange = event => {
+  setFormData({
+    ...formData,
+    [event.target.name]: event.target.value
+  });
+};
+
+
+
+
+
+
+
+
+
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  console.log(formData);
+  try{
+
+    const url ="http://localhost:5000/register"
+    fetch(url, {
+      method: "POST",
+      crossDomain:true,
+      headers:{
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Acess-Control-Allow-Origin":"*"
+      },
+      body:JSON.stringify ({
+        email:formData.email,
+        password:formData.password,
+        mobile: formData.mobile
+      })
+    }).then((res) => res.json())
+    .then((data) => {
+      alert("user registered")
+      console.log(data, "userRegister")
+
+    })
+    console.log("registered")
+
+  }
+  catch(error){
+
+    if(error.response.status === 402){
+
+      console.log(error.response.data.message)
+      setError(true)
+    }
+
+  }
+
+
+
+  
+};
   return (
     <Box m={6} textAlign="left">
-      <form>
+      <form onSubmit={handleSubmit}>
         <FormControl>
           <FormLabel>Email </FormLabel>
-          <Input type="email" color={"grey"} placeholder="Enter your email " />
+          <Input type="email" name="email" onChange={handleChange} value={formData.email} color={"grey"} placeholder="Enter your email " />
         </FormControl>
 
         <FormControl mt={4}>
           <FormLabel>Password</FormLabel>
-          <Input type="password" placeholder="Enter your password" />
+          <Input type="password" name="password" onChange={handleChange} value={formData.password} placeholder="Enter your password" />
         </FormControl>
 
+
+        <FormControl mt={4}>
+          <FormLabel>Mobile Number</FormLabel>
+          <Input type="text" name="mobile" onChange={handleChange} value={formData.mobile} placeholder="Enter your mobile number" />
+        </FormControl>
+        <Button disabled="true" type="submit" backgroundColor={otpButton === "enabled" ? "blue" : "gray"} color={"white"} width="full" mt={4}>
+          Get OTP
+        </Button>
+
+
+
+        <Button type="submit" backgroundColor="blue" color={"white"} width="full" mt={4}>
+          Sign In
+        </Button>
+        <Button border={"1px"} width="full" mt={4}>
+          <FcGoogle align={"center"} />
+          <Text> Sign in with Google</Text>
+        </Button>
         <Stack isInline justifyContent="space-between" mt={4}>
           <Box>
             <Checkbox>
@@ -104,14 +187,6 @@ const LoginForm = () => {
             </Link>
           </Box>
         </Stack>
-
-        <Button backgroundColor="blue" color={"white"} width="full" mt={4}>
-          Sign In
-        </Button>
-        <Button border={"1px"} width="full" mt={4}>
-          <FcGoogle align={"center"} />
-          <Text> Sign in with Google</Text>
-        </Button>
 
         <Box textAlign="center" pt={4} pb={3} color={"grey"}>
           Don't have an account? <Link color="blue.500">Sign up</Link>
