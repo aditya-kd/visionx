@@ -19,6 +19,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
+import {  NavLink } from "react-router-dom";
 
 export default function StartupDetails() {
   return (
@@ -183,9 +184,11 @@ export default function StartupDetails() {
             </Box>
 
             <Flex justifyContent="center" p={"4"} m={"4"}>
-              <Button type="submit" colorScheme={"whatsapp"}>
-                Submit Details
-              </Button>
+              <NavLink to={"/startupsucess"}>
+                <Button type="submit" colorScheme={"whatsapp"}>
+                  Submit Details
+                </Button>
+              </NavLink>
             </Flex>
           </form>
         </Box>

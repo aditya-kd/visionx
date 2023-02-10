@@ -10,6 +10,7 @@ import About from "./components/About";
 import InvestorLogin from "./components/InvestorLogin";
 import StartupLogin from "./components/StartupLogin";
 import StartupDetails from "./components/StartupDetails";
+import StartUpSuccess from "./components/StartUpSuccess";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/investorlogin" element={<InvestorLogin />} />
           <Route path="/startuplogin" element={<StartupLogin />} />
           <Route path="/startupdetails" element={<StartupDetails />} />
+          <Route path="/startupsucess" element={<StartUpSuccess />} />
         </Routes>
       </BrowserRouter>
     </Box>
