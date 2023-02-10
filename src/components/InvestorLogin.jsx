@@ -192,7 +192,7 @@ const LoginForm = () => {
             type="email"
             name="email"
             onChange={handleChange}
-            value={formData.email}
+            value={formData.email || ''}
             color={"grey"}
             placeholder="Enter your email "
           />
@@ -204,7 +204,7 @@ const LoginForm = () => {
             type="password"
             name="password"
             onChange={handleChange}
-            value={formData.password}
+            value={formData.password || ''}
             placeholder="Enter your password"
           />
         </FormControl>
@@ -215,7 +215,7 @@ const LoginForm = () => {
             type="text"
             name="mobile"
             onChange={handleChange}
-            value={formData.mobile}
+            value={formData.mobile || ''}
             placeholder="Enter your mobile number"
           />
         </FormControl>
