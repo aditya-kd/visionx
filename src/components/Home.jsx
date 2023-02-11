@@ -1,8 +1,30 @@
-import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Image,
+  Text,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  FormControl,
+  FormLabel,
+  Input,
+} from "@chakra-ui/react";
 import React from "react";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
 
 export default function LandingPage() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const initialRef = React.useRef(null);
+  const finalRef = React.useRef(null);
   return (
     <Box>
       <Box display={"flex"} flexDirection={"row"} className="landing-page">
@@ -26,7 +48,7 @@ export default function LandingPage() {
                 bgColor={"black"}
                 color="#fff"
                 mt={"8"}
-                _hover={{ bgColor: "#7F8487" }}
+                _hover={{ bgColor: "rgba(0, 0, 0, 0.64)" }}
               >
                 Get Started
               </Button>
@@ -39,7 +61,7 @@ export default function LandingPage() {
             mt="auto"
             p={["", "", "10", "10"]}
           >
-            <Flex width={["32", "", "28", "28"]} alignItems="center">
+            <Flex width={["32", "28", "28", "28"]} alignItems="center">
               <Image
                 src="https://www.svgrepo.com/show/445341/security-verified-solid.svg"
                 boxSize={"6"}
@@ -86,8 +108,40 @@ export default function LandingPage() {
               bgColor="#FFBF23"
               p={"3"}
               borderRadius="full"
+              position={"fixed"}
+              _hover={{ cursor: "pointer"}}
             >
-              <BsFillChatLeftTextFill />
+              <BsFillChatLeftTextFill onClick={onOpen} />
+              <Modal
+                initialFocusRef={initialRef}
+                finalFocusRef={finalRef}
+                isOpen={isOpen}
+                onClose={onClose}
+              >
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Contact Us</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody pb={6}>
+                    <FormControl>
+                      <FormLabel>Your name</FormLabel>
+                      <Input ref={initialRef} placeholder="Full name" />
+                    </FormControl>
+
+                    <FormControl mt={4}>
+                      <FormLabel>Your Message</FormLabel>
+                      <Input placeholder="Enter your Message" size={"lg"} />
+                    </FormControl>
+                  </ModalBody>
+
+                  <ModalFooter>
+                    <Button colorScheme="blue" mr={3}>
+                      Submit
+                    </Button>
+                    <Button onClick={onClose}>Cancel</Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
             </Box>
           </Box>
         </Box>
@@ -102,13 +156,13 @@ export default function LandingPage() {
       >
         <Box
           fontSize={"3xl"}
-          p={["12", "12", "24", "24"]}
+          p={["12", "24", "24", "24"]}
           pl={["", "", "20", "20"]}
         >
           <Text>With the Right Software, Great Things Can Happen</Text>
         </Box>
 
-        <Box p={["12", "12", "24", "24"]}>
+        <Box p={["12", "24", "24", "24"]}>
           <Text>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
             doloremque quisquam vitae officia, porro reprehenderit maiores aut
@@ -120,3 +174,4 @@ export default function LandingPage() {
     </Box>
   );
 }
+

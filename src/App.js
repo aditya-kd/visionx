@@ -11,6 +11,7 @@ import InvestorLogin from "./components/InvestorLogin";
 import StartupLogin from "./components/StartupLogin";
 import StartupDetails from "./components/StartupDetails";
 import StartUpSuccess from "./components/StartUpSuccess";
+import ProductsPage from "./components/ProductsPage";
 
 function App() {
   return (
@@ -19,13 +20,12 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/start-ups" element={<StartUps />} />
-          <Route path="/partners" element={<Partners />} />
-          <Route path="/investors" element={<Investors />} />
+          <Route path="/start-ups" element={<StartupLogin />} />
+          {/* <Route path="/partners" element={<Partners />} /> */}
+          <Route path="/partners" element={<ProductsPage />} />
+          <Route path="/investors" element={<InvestorLogin />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/investorlogin" element={<InvestorLogin />} />
-          <Route path="/startuplogin" element={<StartupLogin />} />
+          <Route path="/about" element={<About />} />          
           <Route path="/startupdetails" element={<StartupDetails />} />
           <Route path="/startupsucess" element={<StartUpSuccess />} />
         </Routes>
