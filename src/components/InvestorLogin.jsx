@@ -307,6 +307,7 @@ const LoginForm = () => {
             placeholder="Enter your otp" />
         </FormControl>
         <Button
+          mt={3}
           backgroundColor="blue"
           textColor="white"
           onClick={verifyCode}
