@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import app from "./firebase-config";
 import { useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import { getAuth, RecaptchaVerifier , signInWithPhoneNumber} from "firebase/auth";
+import app from "./otp-auth/firebase-config"
+import { getAuth, RecaptchaVerifier,signInWithPhoneNumber  } from "firebase/auth";
 import {
   ColorModeProvider,
   CSSReset,
@@ -22,6 +21,10 @@ import {
   AlertTitle,
 } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
+
+
+const auth = getAuth(app)
+
 
 const App = () => {
   return (
@@ -90,15 +93,122 @@ const LoginHeader = () => {
 const LoginForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
-  const [otpButton, setOtpButton] = useState("disabled");
   const [error, setError] = useState(false);
+  
+  
+  const [verify, setVerify] = useState({
+    verifyButton:false,
+    verifyOtp:false,
+    verification: false
+  })
 
+
+  
   const handleChange = (event) => {
+    
+
     setFormData({
       ...formData,
       [event.target.name]: event.target.value,
     });
+
+    
   };
+
+
+  const handleMobile = (event) => {
+    console.log(event);
+    if(event === 10){
+      setVerify({
+        verifyButton: true
+      })
+    }
+    else{
+      setVerify({
+        verifyButton: false
+      })
+
+    }
+  }
+
+  const handleMobileChange = (event) => {
+    
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+
+    handleMobile(event.target.value.length)
+    
+
+  }
+
+  //firebase functionality
+
+  
+  const onCaptchVerify = () => {
+
+    window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+      'size': 'invisible',
+      'callback': (response) => {
+        onSignInSubmit();
+        // reCAPTCHA solved, allow signInWithPhoneNumber.
+        // ...
+      },
+     
+    }, auth);
+    }
+  
+    const onSignInSubmit = () => {
+      onCaptchVerify()
+  
+  
+      const phoneNumber = "+91" + formData.mobile;
+      const appVerifier = window.recaptchaVerifier;
+        signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+          .then((confirmationResult) => {
+            // SMS sent. Prompt user to type the code from the message, then sign the
+            // user in with confirmationResult.confirm(code).
+            window.confirmationResult = confirmationResult;
+
+            alert("OTP sent")
+            setVerify({
+              verifyOtp: true
+            })
+            console.log(phoneNumber);
+            
+            // ...
+          }).catch((error) => {
+            // Error; SMS not sent
+            // ...
+            console.log(error)
+            console.log(phoneNumber)
+          });
+      }
+  
+      const verifyCode = () => {
+        window.confirmationResult.confirm(formData.otp).then((result) => {
+          // User signed in successfully.
+          const user = result.user;
+          console.log(formData.otp);
+          console.log(user);
+          alert("Verification Done")
+          setVerify({
+            verification: true
+          })
+
+          // ...
+        }).catch((error) => {
+          console.log(formData.otp);
+          alert("Invalid Otp")
+          // User couldn't sign in (bad verification code?)
+          // ...
+        });
+        
+      }
+
+
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -125,6 +235,7 @@ const LoginForm = () => {
           navigate("/startupdetails");
           console.log(data, "userRegister");
         });
+      
       console.log("registered");
     } catch (error) {
       if (error.response.status === 402) {
@@ -134,54 +245,7 @@ const LoginForm = () => {
     }
   };
 
-  //firebase functionality
-
-  // const setButton = (length) => {
-  //   if(length === 10){
-  //     console.log(length)
-  //     setOtpButton("enabled")
-  //     console.log("function")
-
-  //   }
-  //   else{
-
-  //     setOtpButton("disabled")
-
-  //   }
-
-  // }
-  // const auth = getAuth(app)
-
-  // const onCaptchVerify = () => {
-
-  // window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
-  //   'size': 'normal',
-  //   'callback': (response) => {
-  //     // reCAPTCHA solved, allow signInWithPhoneNumber.
-  //     // ...
-  //   },
-  //   'expired-callback': () => {
-  //     // Response expired. Ask user to solve reCAPTCHA again.
-  //     // ...
-  //   }
-  // }, auth);
-  // }
-
-  // const signInSubmit = () => {
-
-  //   const phoneNumber = FormData.mobile;
-  //   const appVerifier = window.recaptchaVerifier;
-  //     signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-  //       .then((confirmationResult) => {
-  //         // SMS sent. Prompt user to type the code from the message, then sign the
-  //         // user in with confirmationResult.confirm(code).
-  //         window.confirmationResult = confirmationResult;
-  //         // ...
-  //       }).catch((error) => {
-  //         // Error; SMS not sent
-  //         // ...
-  //       });
-  //   }
+  
 
   return (
     <Box m={6} textAlign="left">
@@ -212,30 +276,62 @@ const LoginForm = () => {
         <FormControl mt={4}>
           <FormLabel>Mobile Number</FormLabel>
           <Input
-            type="text"
+            type="number"
             name="mobile"
-            onChange={handleChange}
+            onChange={handleMobileChange}
             value={formData.mobile || ''}
             placeholder="Enter your mobile number"
           />
         </FormControl>
         <Button
-          disabled="true"
-          type="submit"
-          backgroundColor={otpButton === "enabled" ? "blue" : "gray"}
-          color={"white"}
-          width="full"
-          mt={4}
+         
+         backgroundColor={verify.verifyButton === true ? "blue" : "gray"}
+         textColor={verify.verifyButton === true ? "white" : "lightgray"}
+         cursor={verify.verifyButton === true ? "pointer" : "not-allowed"}
+         mt={4}
+         onClick={onSignInSubmit}
+
         >
-          Get OTP
+
+      
+          Verify
         </Button>
+        
+        
+         {verify.verifyOtp === true ? (<><FormControl mt={4}>
+          <FormLabel>OTP:</FormLabel>
+          <Input
+            type="text"
+            name="otp"
+            onChange={handleChange}
+            placeholder="Enter your otp" />
+        </FormControl>
+        <Button
+          backgroundColor="blue"
+          textColor="white"
+          onClick={verifyCode}
+
+          >
+            Verify otp
+          </Button></> ):
+          null }
+        
+         
+
+
+      
+
+
 
         <Button
           type="submit"
-          backgroundColor="blue"
+          backgroundColor={ verify.verification === true ? "blue" : "gray"} 
+          textColor = {verify.verification === true ? "white" : "lightgray" }
           color={"white"}
           width="full"
           mt={4}
+          onClick={handleSubmit}
+          cursor={verify.verification === true ? "pointer" : "not-allowed"}
         >
           Sign In
         </Button>
@@ -270,6 +366,8 @@ const LoginForm = () => {
           </Alert>
         </Box>
       )}
+
+     <div id="recaptcha-container"></div>
     </Box>
   );
 };
