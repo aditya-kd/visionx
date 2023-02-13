@@ -4,8 +4,11 @@ import app from "./otp-auth/firebase-config";
 import {
   getAuth,
   RecaptchaVerifier,
+  GoogleAuthProvider,
+  signInWithPopup,
   signInWithPhoneNumber,
 } from "firebase/auth";
+
 import {
   ColorModeProvider,
   CSSReset,
@@ -27,6 +30,7 @@ import {
 import { FcGoogle } from "react-icons/fc";
 
 const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
 const App = () => {
   return (
@@ -198,6 +202,25 @@ const LoginForm = () => {
       });
   };
 
+
+    const handleClick = () => {
+      signInWithPopup(auth,provider)
+      .then((data)=>{
+          // const user = data.user.email;
+          // const pass = data.user.uid
+          console.log(data.user);
+          alert("User registered");
+          console.log(data.user.displayName,data.user.email);
+          navigate("/dashboard");
+
+      }).catch((error) => {
+          console.log(error);  
+      });
+    }
+
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
@@ -234,8 +257,12 @@ const LoginForm = () => {
   };
 
   return (
+
     <Box m={6} textAlign="left">
       <form onSubmit={handleSubmit}>
+
+        {/* Email Input Field */}
+
         <FormControl>
           <FormLabel>Email </FormLabel>
           <Input
@@ -248,6 +275,8 @@ const LoginForm = () => {
           />
         </FormControl>
 
+        {/* Password Input Field */}
+
         <FormControl mt={4}>
           <FormLabel>Password</FormLabel>
           <Input
@@ -258,6 +287,8 @@ const LoginForm = () => {
             placeholder="Enter your password"
           />
         </FormControl>
+
+        {/* Mobile Number Input Field */}
 
         <FormControl mt={4}>
           <FormLabel>Mobile Number</FormLabel>
@@ -280,6 +311,9 @@ const LoginForm = () => {
               There was an error processing your request. Please try again.
             </Alert>
           ) : null}
+
+        {/* Verify Button */}
+
         </FormControl>
         <Button
           backgroundColor={verify.verifyButton === true ? "blue" : "gray"}
@@ -290,6 +324,8 @@ const LoginForm = () => {
         >
           Verify
         </Button>
+
+        {/* Verify OTP Button */}
 
         {verify.verifyOtp === true ? (
           <>
@@ -313,6 +349,9 @@ const LoginForm = () => {
           </>
         ) : null}
 
+
+        {/* Sign In Button */}
+
         <Button
           type="submit"
           backgroundColor={verify.verification === true ? "blue" : "gray"}
@@ -326,24 +365,39 @@ const LoginForm = () => {
           Sign In
         </Button>
 
-        <Button border={"1px"} width="full" mt={4}>
+        {/* Sign With Google Button */}
+
+        <Button 
+          border={"1px"}
+          width="full"
+          mt={4}
+          onClick={handleClick}
+          >
           <FcGoogle align={"center"} />
           <Text> Sign in with Google</Text>
         </Button>
         <div id="recaptcha-container"></div>
         <Stack isInline justifyContent="space-between" mt={4}>
+
+          {/* Remember For 30 Days */}
+
           <Box>
             <Checkbox>
               {" "}
               <Text fontSize={"13px"}>Remember for 30 days</Text>
             </Checkbox>
           </Box>
+
+          {/* Forgot Password Link */}
+
           <Box>
             <Link color="blue.500">
               <Text fontSize={"13px"}>Forgot password? </Text>
             </Link>
           </Box>
         </Stack>
+
+        {/* Don't have an account? */}
 
         <Box textAlign="center" pt={4} pb={3} color={"grey"}>
           Don't have an account? <Link color="blue.500">Sign up</Link>
