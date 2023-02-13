@@ -1,5 +1,6 @@
 import { Box, Button, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export default function StartUpSuccess() {
   return (
@@ -41,7 +42,9 @@ export default function StartUpSuccess() {
             </Text>
           </Box>
           <Flex justifyContent={"center"} m={"5"}>
-            <Button colorScheme={"messenger"}>Visit Dashboard</Button>
+            <NavLink to={"/dashboard"}>
+              <Button colorScheme={"messenger"}>Visit Dashboard</Button>
+            </NavLink>
           </Flex>
         </Flex>
       </Box>

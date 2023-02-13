@@ -190,7 +190,7 @@ const LoginForm = () => {
         setVerify({
           verification: true,
         });
-        navigate("/dashboard");
+        // navigate("/dashboard");
 
         // ...
       })
@@ -243,7 +243,7 @@ const LoginForm = () => {
         .then((res) => res.json())
         .then((data) => {
           alert("user registered");
-          navigate("/startupdetails");
+          verify.verifyOtp !== null ? navigate("/startupdetails") : alert("invalid OTP")
           console.log(data, "userRegister");
         });
 
@@ -308,7 +308,7 @@ const LoginForm = () => {
           {verify.verifyOtp === false ? (
             <Alert mt={"1"} status="error">
               <AlertIcon />
-              There was an error processing your request. Please try again.
+              There was an error processing your request. Please try later.
             </Alert>
           ) : null}
 
