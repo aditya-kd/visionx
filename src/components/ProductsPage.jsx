@@ -5,28 +5,12 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  ButtonGroup,
   Image,
-  Stack,
-  Heading,
   Divider,
-  Button,
   SimpleGrid,
-  useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  FormControl,
-  FormLabel,
-  Input,
-  ModalFooter,
   Flex,
 } from "@chakra-ui/react";
 import React from "react";
-import { BsFillChatLeftTextFill } from "react-icons/bs";
 
 export default function ProductsPage() {
   return (
@@ -162,61 +146,6 @@ const ProductCards = () => {
           </CardBody>
         </Card>
       </SimpleGrid>
-    </Box>
-  );
-};
-
-const ChatSupport = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const initialRef = React.useRef(null);
-  const finalRef = React.useRef(null);
-  return (
-    <Box
-      display={"flex"}
-      flexDirection={"column"}
-  
-      justifyContent={"flex-end"}
-    >
-      <Box
-        m={["", "", "10", "10"]}
-        bgColor="#FFBF23"
-        p={"3"}
-        borderRadius="full"
-        _hover={{ cursor: "pointer" }}
-      >
-        <BsFillChatLeftTextFill onClick={onOpen} />
-        <Modal
-          initialFocusRef={initialRef}
-          finalFocusRef={finalRef}
-          isOpen={isOpen}
-          onClose={onClose}
-        >
-          <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>Contact Us</ModalHeader>
-            <ModalCloseButton />
-            <ModalBody pb={6}>
-              <FormControl>
-                <FormLabel>Your name</FormLabel>
-                <Input ref={initialRef} placeholder="Full name" />
-              </FormControl>
-
-              <FormControl mt={4}>
-                <FormLabel>Your Message</FormLabel>
-                <Input placeholder="Enter your Message" size={"lg"} />
-              </FormControl>
-            </ModalBody>
-
-            <ModalFooter>
-              <Button colorScheme="blue" mr={3}>
-                Submit
-              </Button>
-              <Button onClick={onClose}>Cancel</Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      </Box>
     </Box>
   );
 };

@@ -2,9 +2,7 @@ import {
   Box,
   Button,
   Flex,
-  Image,
   Input,
-  SimpleGrid,
   Table,
   TableContainer,
   Tbody,
@@ -110,9 +108,9 @@ export default function FinancialDetails() {
         </TableContainer>
         <Flex justifyContent={"center"}>
           <NavLink to={"/upload-documents"}>
-          <Button width={"52"} colorScheme={"messenger"}>
-            Page 3
-          </Button>
+            <Button width={"52"} colorScheme={"messenger"}>
+              Page 3
+            </Button>
           </NavLink>
         </Flex>
       </Box>

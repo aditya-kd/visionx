@@ -4,10 +4,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Grid,
-  GridItem,
   HStack,
-  Image,
   Input,
   Link,
   Radio,
@@ -88,10 +85,10 @@ export default function UploadDocuments() {
                 <Stack direction={"column"} p={"4"} m={"4"}>
                   <Box>
                     <FormControl isRequired>
-                    <Flex>
-                            <FormLabel>MIS</FormLabel>
-                            <Text as={"i"}>(Tenure: 12 Months)</Text>
-                        </Flex>
+                      <Flex>
+                        <FormLabel>MIS</FormLabel>
+                        <Text as={"i"}>(Tenure: 12 Months)</Text>
+                      </Flex>
                       <Input
                         variant={"ghost"}
                         type={"Text"}
@@ -101,10 +98,10 @@ export default function UploadDocuments() {
                   </Box>
                   <Box>
                     <FormControl isRequired>
-                    <Flex>
-                            <FormLabel>Audited Financials</FormLabel>
-                            <Text as={"i"}>(Tenure: 24 Months)</Text>
-                        </Flex>
+                      <Flex>
+                        <FormLabel>Audited Financials</FormLabel>
+                        <Text as={"i"}>(Tenure: 24 Months)</Text>
+                      </Flex>
                       <Input
                         variant={"ghost"}
                         type={"text"}
@@ -114,10 +111,10 @@ export default function UploadDocuments() {
                   </Box>
                   <Box>
                     <FormControl isRequired>
-                    <Flex>
-                            <FormLabel>Sales Register</FormLabel>
-                            <Text as={"i"}>(Tenure: 12 Months)</Text>
-                        </Flex>
+                      <Flex>
+                        <FormLabel>Sales Register</FormLabel>
+                        <Text as={"i"}>(Tenure: 12 Months)</Text>
+                      </Flex>
                       <Input
                         variant={"ghost"}
                         type={"text"}
