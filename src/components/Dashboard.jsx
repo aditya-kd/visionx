@@ -8,6 +8,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Dashboard() {
   return (
@@ -111,7 +112,9 @@ export default function Dashboard() {
         </Box>
 
         <Flex justifyContent={"center"} p={"5"} m={"5"}>
+          <NavLink to={"/financialdetails"}>
           <Button colorScheme={"messenger"}>Company Details</Button>
+          </NavLink>
         </Flex>
       </Box>
     </Box>

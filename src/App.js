@@ -10,6 +10,8 @@ import StartupDetails from "./components/StartupDetails";
 import StartUpSuccess from "./components/StartUpSuccess";
 import ProductsPage from "./components/ProductsPage";
 import Dashboard from "./components/Dashboard";
+import UploadDocuments from "./components/UploadDocuments";
+import FinancialDetails from "./components/FinancialDetails";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           <Route path="/startupdetails" element={<StartupDetails />} />
           <Route path="/startupsucess" element={<StartUpSuccess />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/upload-documents" element={<UploadDocuments />} />
+          <Route path="/financialdetails" element={<FinancialDetails />} />
         </Routes>
       </BrowserRouter>
     </Box>

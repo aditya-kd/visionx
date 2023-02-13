@@ -220,7 +220,7 @@ const LoginForm = () => {
         .then((res) => res.json())
         .then((data) => {
           alert("user registered");
-          verify.verifyOtp !== null ? navigate("/dashboard") : alert("invalid OTP")
+          verify.verifyOtp !== null ? navigate("/startupdetails") : alert("invalid OTP")
           console.log(data, "userRegister");
         });
 
