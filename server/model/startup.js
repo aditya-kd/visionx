@@ -22,11 +22,10 @@ const startupSchema = new mongoose.Schema({
         required: true
 
     },
-    investmen:{
-        type: String,
-        required: true
-
-    },
+    investment:{
+     type: Object,
+     of: Boolean
+     },
     contact: {
         type: Number,
         required: true
