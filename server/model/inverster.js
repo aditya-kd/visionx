@@ -8,3 +8,5 @@ const investorSchema = new mongoose.Schema({
 
 
 const Investor = mongoose.model("Investors", investorSchema)
+
+export default Investor;

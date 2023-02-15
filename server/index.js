@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import User from './model/user.js';
 import cors from "cors";
 import bcrypt from "bcrypt"
+import Startups from './model/startup.js';
 
 
 
@@ -75,6 +76,28 @@ app.post("/register", async (req, res) => {
 
 
 });
+
+app.post("/startups",async(req,res) => {
+  const {companyName ,companyWebsite,founderName,founderEmail,investmenttype,contact,capitalRequired,yearFounded,
+    fundingRecieved} = req.body;
+
+    try {
+
+      await Startups.create({
+
+        companyName ,companyWebsite,founderName,founderEmail,investmenttype,contact,capitalRequired,yearFounded,
+        fundingRecieved
+
+      })
+      res.send({status: 201})
+      
+    } catch (error) {
+      console.log(error);
+      res.send({status: 401})
+
+      
+    }
+})
 
 
 
