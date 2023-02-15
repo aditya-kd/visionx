@@ -78,14 +78,14 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/startups",async(req,res) => {
-  const {companyName ,companyWebsite,founderName,founderEmail,investmenttype,contact,capitalRequired,yearFounded,
+  const {companyName ,companyWebsite,founderName,founderEmail,investment,contact,capitalRequired,yearFounded,
     fundingRecieved} = req.body;
 
     try {
 
       await Startups.create({
 
-        companyName ,companyWebsite,founderName,founderEmail,investmenttype,contact,capitalRequired,yearFounded,
+        companyName ,companyWebsite,founderName,founderEmail,investment,contact,capitalRequired,yearFounded,
         fundingRecieved
 
       })
