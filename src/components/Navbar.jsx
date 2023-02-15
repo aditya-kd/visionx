@@ -61,6 +61,7 @@ export default function Navbar() {
           <Link to={"/about"}>
             <li className="navbar-li">About</li>
           </Link>
+          <Link to={"contact-us"}>
           <ListItem p={"3"}>
             <Button
               bgColor={"#FFBF23"}
@@ -72,6 +73,7 @@ export default function Navbar() {
               Contact Us
             </Button>
           </ListItem>
+          </Link>
         </UnorderedList>
       </Box>
 
