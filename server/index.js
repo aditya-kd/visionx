@@ -5,7 +5,7 @@ import User from './model/user.js';
 import cors from "cors";
 import bcrypt from "bcrypt"
 import Startups from './model/startup.js';
-
+import Investor from './model/inverster.js';
 
 
 
@@ -85,9 +85,47 @@ app.post("/startups",async(req,res) => {
 
       await Startups.create({
 
-        companyName ,companyWebsite,founderName,founderEmail,investment,contact,capitalRequired,yearFounded,
+        companyName,
+        companyWebsite,
+         founderName,
+         founderEmail,
+         investment,
+         contact,
+         capitalRequired,
+         yearFounded,
         fundingRecieved
 
+      })
+      res.send({status: 201})
+      
+    } catch (error) {
+      console.log(error);
+      res.send({status: 401})
+
+      
+    }
+})
+
+
+app.post("/investors",async(req,res) => {
+  const { fullName,
+    companyName ,
+    companyWebsite,
+    investorType,
+    founderEmail,
+    contact,sector} = req.body;
+
+    try {
+
+      await Investor.create({
+
+        fullName,
+        companyName ,
+        companyWebsite,
+        investorType,
+        founderEmail,
+        contact,
+        sector
       })
       res.send({status: 201})
       
