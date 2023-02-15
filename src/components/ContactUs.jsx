@@ -22,7 +22,7 @@ const App = () => {
          </Center>
        </strong>
      <Button backgroundColor="black" color={"white"} width='flex' m={6}>Get Started</Button>
-      <Center> <Image src="/images/place-holder.png" width={'flex'}  ></Image></Center>
+      <Center><Image src="/images/place-holder.png" width={'flex'}  ></Image></Center>
      <Footer/>
      </Box>
     </Box>
