@@ -4,8 +4,6 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Grid,
-  GridItem,
   HStack,
   Image,
   Input,
@@ -18,30 +16,27 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { async } from "@firebase/util";
+
 import React, { useState } from "react";
-import {  NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function StartupDetails() {
-
-  const [startupData,setStartupData] = useState({})
-
+  const [startupData, setStartupData] = useState({});
 
   const handleChange = (event) => {
     setStartupData({
       ...startupData,
       [event.target.name]: event.target.value,
-      
     });
     // console.log(`${event.target.name}: ${event.target.value}`)
   };
 
-  const handleSubmit =  async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(startupData);
-    
+
     try {
-      const url  = "http://localhost:5000/startups";
+      const url = "http://localhost:5000/startups";
       fetch(url, {
         method: "POST",
         crossDomain: true,
@@ -51,33 +46,28 @@ export default function StartupDetails() {
           "Acess-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
-        companyName:startupData.companyName,
-        companyWebsite:startupData.companyWebsite,
-        founderName: startupData.founderName,
-        founderEmail: startupData.founderEmail,
-        investment: startupData.investment,
-        contact: startupData.contactNumber,
-        capitalRequired: startupData.capitalRequired,
-        yearFounded: startupData.yearfounder,
-        fundingRecieved:startupData.IsfundingRecieved
+          companyName: startupData.companyName,
+          companyWebsite: startupData.companyWebsite,
+          founderName: startupData.founderName,
+          founderEmail: startupData.founderEmail,
+          investment: startupData.investment,
+          contact: startupData.contactNumber,
+          capitalRequired: startupData.capitalRequired,
+          yearFounded: startupData.yearfounder,
+          fundingRecieved: startupData.IsfundingRecieved,
         }),
       })
-      .then((res) => res.json())
-      .then((data) => {
-        alert("done")
-        console.log(data, "done");
-      })
-
-      
-      
+        .then((res) => res.json())
+        .then((data) => {
+          alert("done");
+          console.log(data, "done");
+        });
     } catch (error) {
-      alert("error is there")
+      alert("error is there");
       console.log(error);
-      
     }
     console.log(startupData);
-  }
-
+  };
 
   return (
     <Box display={"grid"} gridTemplateColumns={"25% 75%"}>
@@ -136,14 +126,29 @@ export default function StartupDetails() {
                     <FormControl>
                       <FormLabel>Investment</FormLabel>
                       <RadioGroup>
-                        <HStack  spacing={"5"}>
-                          <Radio onChange={handleChange} name="investment"   bgColor={"white"} value="Equity">
+                        <HStack spacing={"5"}>
+                          <Radio
+                            onChange={handleChange}
+                            name="investment"
+                            bgColor={"white"}
+                            value="Equity"
+                          >
                             Equity
                           </Radio>
-                          <Radio onChange={handleChange}  name="investment"  bgColor={"white"} value="Debt">
+                          <Radio
+                            onChange={handleChange}
+                            name="investment"
+                            bgColor={"white"}
+                            value="Debt"
+                          >
                             Debt
                           </Radio>
-                          <Radio onChange={handleChange} name="investment"  bgColor={"white"} value="Both">
+                          <Radio
+                            onChange={handleChange}
+                            name="investment"
+                            bgColor={"white"}
+                            value="Both"
+                          >
                             Both
                           </Radio>
                         </HStack>
@@ -205,7 +210,6 @@ export default function StartupDetails() {
                         <Input
                           name="capitalRequired"
                           onChange={handleChange}
-
                           variant={"ghost"}
                           type={"number"}
                           placeholder={"₹ 10,00,000"}
@@ -214,10 +218,15 @@ export default function StartupDetails() {
                     </FormControl>
                   </Box>
                   <Box>
-                    <FormControl >
+                    <FormControl>
                       <HStack>
                         <FormLabel>Funding received previously</FormLabel>
-                        <Select onChange={handleChange} name="IsfundingRecieved" variant={"ghost"} placeholder="Select">
+                        <Select
+                          onChange={handleChange}
+                          name="IsfundingRecieved"
+                          variant={"ghost"}
+                          placeholder="Select"
+                        >
                           <option value={"Yes"}>Yes</option>
                           <option value={"No"}>No</option>
                         </Select>
@@ -231,7 +240,11 @@ export default function StartupDetails() {
                       <HStack>
                         <FormLabel>Year Founded</FormLabel>
                         <Input
-                        name="yearfounder" onChange={handleChange} variant={"ghost"} type={"date"} />
+                          name="yearfounder"
+                          onChange={handleChange}
+                          variant={"ghost"}
+                          type={"date"}
+                        />
                       </HStack>
                     </FormControl>
                   </Box>
@@ -256,7 +269,11 @@ export default function StartupDetails() {
 
             <Flex justifyContent="center" p={"4"} m={"4"}>
               <NavLink to={"/startupsucess"}>
-                <Button onClick={handleSubmit} type="submit" colorScheme={"whatsapp"}>
+                <Button
+                  onClick={handleSubmit}
+                  type="submit"
+                  colorScheme={"whatsapp"}
+                >
                   Submit Details
                 </Button>
               </NavLink>

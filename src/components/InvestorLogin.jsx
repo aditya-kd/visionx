@@ -190,7 +190,7 @@ const LoginForm = () => {
         setVerify({
           verification: true,
         });
-        // navigate("/dashboard");
+        
 
         // ...
       })
@@ -211,7 +211,7 @@ const LoginForm = () => {
           console.log(data.user);
           alert("User registered");
           console.log(data.user.displayName,data.user.email);
-          navigate("/dashboard");
+          navigate("/investor-details");
 
       }).catch((error) => {
           console.log(error);  
@@ -243,7 +243,7 @@ const LoginForm = () => {
         .then((res) => res.json())
         .then((data) => {
           alert("user registered");
-          verify.verifyOtp !== null ? navigate("/startupdetails") : alert("invalid OTP")
+          verify.verifyOtp !== null ? navigate("/investor-details") : alert("invalid OTP")
           console.log(data, "userRegister");
         });
 

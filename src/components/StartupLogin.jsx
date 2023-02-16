@@ -1,5 +1,14 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import app from "./otp-auth/firebase-config";
+import {
+  getAuth,
+  RecaptchaVerifier,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithPhoneNumber,
+} from "firebase/auth";
+
 import {
   ColorModeProvider,
   CSSReset,
@@ -14,9 +23,14 @@ import {
   Stack,
   Checkbox,
   Button,
+  Alert,
+  AlertIcon,
+  AlertTitle,
 } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
-import { useNavigate } from "react-router";
+
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
 const App = () => {
   return (
@@ -39,7 +53,7 @@ const LoginArea = () => {
           alignItems={"center"}
           justifyContent={"center"}
         >
-          <Flex borderRadius={"2xl"} bgColor={"#81C7EF"} p={"20"}>
+          <Flex borderRadius={"2xl"} bgColor={"blue.200"} p={"20"}>
             <Text color={"white"}>Service to our Customers</Text>
           </Flex>
         </Flex>
@@ -85,8 +99,13 @@ const LoginHeader = () => {
 const LoginForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
-  const [otpButton, setOtpButton] = useState("disabled");
   const [error, setError] = useState(false);
+
+  const [verify, setVerify] = useState({
+    verifyButton: false,
+    verifyOtp: null,
+    verification: false,
+  });
 
   const handleChange = (event) => {
     setFormData({
@@ -94,6 +113,113 @@ const LoginForm = () => {
       [event.target.name]: event.target.value,
     });
   };
+
+  const handleMobile = (event) => {
+    if (event === 10) {
+      setVerify({
+        verifyButton: true,
+      });
+    } else {
+      setVerify({
+        verifyButton: false,
+      });
+    }
+  };
+
+  const handleMobileChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+
+    handleMobile(event.target.value.length);
+  };
+
+  //firebase functionality
+
+  const onCaptchVerify = () => {
+    window.recaptchaVerifier = new RecaptchaVerifier(
+      "recaptcha-container",
+      {
+        size: "invisible",
+        callback: (response) => {
+          onSignInSubmit();
+          // reCAPTCHA solved, allow signInWithPhoneNumber.
+          // ...
+        },
+      },
+      auth
+    );
+  };
+
+  const onSignInSubmit = () => {
+    onCaptchVerify();
+
+    const phoneNumber = "+91" + formData.mobile;
+    const appVerifier = window.recaptchaVerifier;
+    signInWithPhoneNumber(auth, phoneNumber, appVerifier)
+      .then((confirmationResult) => {
+        // SMS sent. Prompt user to type the code from the message, then sign the
+        // user in with confirmationResult.confirm(code).
+        window.confirmationResult = confirmationResult;
+
+        setVerify({
+          verifyOtp: true,
+        });
+
+        // ...
+      })
+      .catch((error) => {
+        // Error; SMS not sent
+        // ...
+        console.log("Error occured on Verification: ", error);
+        setVerify({
+          verifyOtp: false,
+        });
+      });
+  };
+
+  const verifyCode = () => {
+    window.confirmationResult
+      .confirm(formData.otp)
+      .then((result) => {
+        // User signed in successfully.
+        const user = result.user;
+        console.log(user);
+        alert("Verification Done");
+        setVerify({
+          verification: true,
+        });
+        // navigate("/dashboard");
+
+        // ...
+      })
+      .catch((error) => {
+        console.log(formData.otp);
+        alert("Invalid Otp");
+        // User couldn't sign in (bad verification code?)
+        // ...
+      });
+  };
+
+
+    const handleClick = () => {
+      signInWithPopup(auth,provider)
+      .then((data)=>{
+          // const user = data.user.email;
+          // const pass = data.user.uid
+          console.log(data.user);
+          alert("User registered");
+          console.log(data.user.displayName,data.user.email);
+          navigate("/startupdetails");
+
+      }).catch((error) => {
+          console.log(error);  
+      });
+    }
+
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -117,9 +243,10 @@ const LoginForm = () => {
         .then((res) => res.json())
         .then((data) => {
           alert("user registered");
+          verify.verifyOtp !== null ? navigate("/startupdetails") : alert("invalid OTP")
           console.log(data, "userRegister");
-          navigate("/startupdetails");
         });
+
       console.log("registered");
     } catch (error) {
       if (error.response.status === 402) {
@@ -128,20 +255,27 @@ const LoginForm = () => {
       }
     }
   };
+
   return (
+
     <Box m={6} textAlign="left">
       <form onSubmit={handleSubmit}>
+
+        {/* Email Input Field */}
+
         <FormControl>
           <FormLabel>Email </FormLabel>
           <Input
             type="email"
             name="email"
             onChange={handleChange}
-            value={formData.email || ''}
+            value={formData.email || ""}
             color={"grey"}
             placeholder="Enter your email "
           />
         </FormControl>
+
+        {/* Password Input Field */}
 
         <FormControl mt={4}>
           <FormLabel>Password</FormLabel>
@@ -149,52 +283,113 @@ const LoginForm = () => {
             type="password"
             name="password"
             onChange={handleChange}
-            value={formData.password || ''}
+            value={formData.password || ""}
             placeholder="Enter your password"
           />
         </FormControl>
 
+        {/* Mobile Number Input Field */}
+
         <FormControl mt={4}>
           <FormLabel>Mobile Number</FormLabel>
           <Input
-            type="text"
+            type="number"
             name="mobile"
-            onChange={handleChange}
-            value={formData.mobile || ''}
+            onChange={handleMobileChange}
+            value={formData.mobile || ""}
             placeholder="Enter your mobile number"
           />
+          {verify.verifyOtp === true ? (
+            <Alert status="success" mt={"1"}>
+              <AlertIcon />
+              OTP sent successfully!
+            </Alert>
+          ) : null}
+          {verify.verifyOtp === false ? (
+            <Alert mt={"1"} status="error">
+              <AlertIcon />
+              There was an error processing your request. Please try later.
+            </Alert>
+          ) : null}
+
+        {/* Verify Button */}
+
         </FormControl>
         <Button
-          disabled="true"
-          type="submit"
-          backgroundColor={otpButton === "enabled" ? "blue" : "gray"}
-          color={"white"}
-          width="full"
+          backgroundColor={verify.verifyButton === true ? "blue" : "gray"}
+          textColor={verify.verifyButton === true ? "white" : "lightgray"}
+          cursor={verify.verifyButton === true ? "pointer" : "not-allowed"}
           mt={4}
+          onClick={onSignInSubmit}
         >
-          Get OTP
+          Verify
         </Button>
+
+        {/* Verify OTP Button */}
+
+        {verify.verifyOtp === true ? (
+          <>
+            <FormControl mt={4}>
+              <FormLabel>OTP:</FormLabel>
+              <Input
+                type="text"
+                name="otp"
+                onChange={handleChange}
+                placeholder="Enter your OTP"
+              />
+            </FormControl>
+            <Button
+              mt={3}
+              backgroundColor="blue"
+              textColor="white"
+              onClick={verifyCode}
+            >
+              Verify OTP
+            </Button>
+          </>
+        ) : null}
+
+
+        {/* Sign In Button */}
 
         <Button
           type="submit"
-          backgroundColor="blue"
+          backgroundColor={verify.verification === true ? "blue" : "gray"}
+          textColor={verify.verification === true ? "white" : "lightgray"}
           color={"white"}
           width="full"
           mt={4}
+          onClick={handleSubmit}
+          cursor={verify.verification === true ? "pointer" : "not-allowed"}
         >
           Sign In
         </Button>
-        <Button border={"1px"} width="full" mt={4}>
+
+        {/* Sign With Google Button */}
+
+        <Button 
+          border={"1px"}
+          width="full"
+          mt={4}
+          onClick={handleClick}
+          >
           <FcGoogle align={"center"} />
           <Text> Sign in with Google</Text>
         </Button>
+        <div id="recaptcha-container"></div>
         <Stack isInline justifyContent="space-between" mt={4}>
+
+          {/* Remember For 30 Days */}
+
           <Box>
             <Checkbox>
               {" "}
               <Text fontSize={"13px"}>Remember for 30 days</Text>
             </Checkbox>
           </Box>
+
+          {/* Forgot Password Link */}
+
           <Box>
             <Link color="blue.500">
               <Text fontSize={"13px"}>Forgot password? </Text>
@@ -202,10 +397,21 @@ const LoginForm = () => {
           </Box>
         </Stack>
 
+        {/* Don't have an account? */}
+
         <Box textAlign="center" pt={4} pb={3} color={"grey"}>
           Don't have an account? <Link color="blue.500">Sign up</Link>
         </Box>
       </form>
+      {error && (
+        <Box>
+          <Alert>
+            <AlertTitle>Couldn't Sign In!</AlertTitle>
+          </Alert>
+        </Box>
+      )}
+
+      <div id="recaptcha-container"></div>
     </Box>
   );
 };

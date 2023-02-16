@@ -34,8 +34,8 @@ function App() {
           <Route path="/upload-documents" element={<UploadDocuments />} />
           <Route path="/financialdetails" element={<FinancialDetails />} />
           <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/investorbankSuccess" element={<InvestorBankSuccess />} />
-          <Route path="/investorbankdetails" element={<InvestBankDetails />} />
+          <Route path="/investor-success" element={<InvestorBankSuccess />} />
+          <Route path="/investor-details" element={<InvestBankDetails />} />
         </Routes>
       </BrowserRouter>
     </Box>
