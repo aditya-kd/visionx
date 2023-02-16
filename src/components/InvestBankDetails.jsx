@@ -76,16 +76,14 @@ export default function StartupDetails() {
                     </FormControl>
                   </Box>
 
-                  <Box className="additional-details">
-                    <SimpleGrid column={1}>
-                      <Stack pt={5}>
-                        <Box>
-                          <FormControl>
-                            <HStack>
-                              <FormLabel>Type of Investor:</FormLabel>
-                              <Select variant={"ghost"} placeholder="Select">
-                                <option>Yes</option>
-                                <option>Yes</option>
+                    <Box className="additional-details">
+                      <SimpleGrid column={1} >
+                        <Stack pt={5} >
+                          <Box >
+                            <FormControl>
+                              <HStack>
+                                <FormLabel>Type of Investor:</FormLabel>
+                                <Select variant={"ghost"} placeholder="Select">
                                 <option>Yes</option>
                                 <option>No</option>
                               </Select>
