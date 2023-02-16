@@ -90,8 +90,6 @@ import {
                                 <FormLabel>Type of Investor:</FormLabel>
                                 <Select variant={"ghost"} placeholder="Select">
                                 <option>Yes</option>
-                                <option>Yes</option>
-                                <option>Yes</option>
                                 <option>No</option>
                                 </Select>
                               </HStack>
