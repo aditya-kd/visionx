@@ -13,6 +13,8 @@ import Dashboard from "./components/Dashboard";
 import UploadDocuments from "./components/UploadDocuments";
 import FinancialDetails from "./components/FinancialDetails";
 import ContactUs from "./components/ContactUs";
+import InvestorBankSuccess from "./components/InvestorBankSuccess";
+import InvestBankDetails from "./components/InvestBankDetails";
 
 function App() {
   return (
@@ -32,6 +34,8 @@ function App() {
           <Route path="/upload-documents" element={<UploadDocuments />} />
           <Route path="/financialdetails" element={<FinancialDetails />} />
           <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/investorbankSuccess" element={<InvestorBankSuccess />} />
+          <Route path="/investorbankdetails" element={<InvestBankDetails />} />
         </Routes>
       </BrowserRouter>
     </Box>
