@@ -23,8 +23,8 @@ const startupSchema = new mongoose.Schema({
 
     },
     investment:{
-     type: Object,
-     of: Boolean
+     type: String,
+     required: true
      },
     contact: {
         type: Number,
@@ -36,12 +36,12 @@ const startupSchema = new mongoose.Schema({
         required: true
     },
     yearFounded: {
-        type: Number,
+        type: String,
         required: true
     },
     fundingRecieved: {
-        type: Boolean,
-        require: true
+        type: String,
+        required: true
     },
 }
 )

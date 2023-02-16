@@ -76,6 +76,11 @@ app.post("/register", async (req, res) => {
 
 
 });
+app.get("/startups", async (request,response) => {
+  response.status(201).send({
+    message: "hello startup"
+  })
+})
 
 app.post("/startups",async(req,res) => {
   const {companyName ,companyWebsite,founderName,founderEmail,investment,contact,capitalRequired,yearFounded,
@@ -99,8 +104,9 @@ app.post("/startups",async(req,res) => {
       res.send({status: 201})
       
     } catch (error) {
-      console.log(error);
+    
       res.send({status: 401})
+      console.log(error);
 
       
     }
@@ -130,6 +136,7 @@ app.post("/investors",async(req,res) => {
       res.send({status: 201})
       
     } catch (error) {
+       
       console.log(error);
       res.send({status: 401})
 
