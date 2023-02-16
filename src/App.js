@@ -12,6 +12,7 @@ import ProductsPage from "./components/ProductsPage";
 import Dashboard from "./components/Dashboard";
 import UploadDocuments from "./components/UploadDocuments";
 import FinancialDetails from "./components/FinancialDetails";
+import ContactUs from "./components/ContactUs";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/upload-documents" element={<UploadDocuments />} />
           <Route path="/financialdetails" element={<FinancialDetails />} />
+          <Route path="/contact-us" element={<ContactUs />} />
         </Routes>
       </BrowserRouter>
     </Box>
