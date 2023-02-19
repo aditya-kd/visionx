@@ -42,7 +42,7 @@ export default function StartUpSuccess() {
             </Text>
           </Box>
           <Flex justifyContent={"center"} m={"5"}>
-            <NavLink to={"/"}>
+            <NavLink to={"/listed-companies"}>
               <Button colorScheme={"messenger"} mb={'3'}>See Listed Companies</Button>
             </NavLink>
           </Flex>

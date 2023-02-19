@@ -44,7 +44,7 @@ export default function UploadDocuments() {
                         <Text as={"i"}>(Tenure: 24 Months)</Text>
                       </Flex>
                       <Input
-                        type={"name"}
+                        type={"file"}
                         variant={"ghost"}
                         placeholder="Enter Bank Statements"
                       />
@@ -57,7 +57,7 @@ export default function UploadDocuments() {
                         <Text as={"i"}>(Tenure: 24 Months)</Text>
                       </Flex>
                       <Input
-                        type={"number"}
+                        type={"file"}
                         variant={"ghost"}
                         placeholder="Provisions"
                       />
@@ -91,7 +91,7 @@ export default function UploadDocuments() {
                       </Flex>
                       <Input
                         variant={"ghost"}
-                        type={"Text"}
+                        type={"file"}
                         placeholder="MIS"
                       />
                     </FormControl>
@@ -104,7 +104,7 @@ export default function UploadDocuments() {
                       </Flex>
                       <Input
                         variant={"ghost"}
-                        type={"text"}
+                        type={"file"}
                         placeholder="Financials"
                       />
                     </FormControl>
@@ -117,7 +117,7 @@ export default function UploadDocuments() {
                       </Flex>
                       <Input
                         variant={"ghost"}
-                        type={"text"}
+                        type={"file"}
                         placeholder="Sales"
                       />
                     </FormControl>
