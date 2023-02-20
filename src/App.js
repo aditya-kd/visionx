@@ -17,7 +17,10 @@ import InvestorBankSuccess from "./components/InvestorBankSuccess";
 import InvestBankDetails from "./components/InvestBankDetails";
 import ListedCompanies from "./components/ListedCompanies";
 import IBDashboard from "./components/IBDashboard";
-import PartnerDashboard from "./components/PartnerDashboard";
+import PartnerDashboard from "./components/partners/PartnerDashboard";
+import PartnerSuccess from "./components/partners/PartnerSuccess";
+import CompanyDetails from "./components/partners/CompanyDetails";
+import PartnerDeals from "./components/partners/PartnerDeals";
 
 function App() {
   return (
@@ -42,6 +45,9 @@ function App() {
           <Route path="/listed-companies" element={<ListedCompanies />} />
           <Route path="/ib-dashboard" element={<IBDashboard />} />
           <Route path="/partner-dashboard" element={<PartnerDashboard />} />
+          <Route path="/partner-success" element={<PartnerSuccess />} />
+          <Route path="/company-details" element={<CompanyDetails />} />
+          <Route path="/partner-deals" element={<PartnerDeals />} />
         </Routes>
       </BrowserRouter>
     </Box>
