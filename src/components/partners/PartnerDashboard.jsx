@@ -1,6 +1,7 @@
 import { AddIcon } from "@chakra-ui/icons";
 import { Box, Text, Flex, Heading, SimpleGrid, Button } from "@chakra-ui/react";
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 
 export default function PartnerDashboard() {
@@ -59,9 +60,11 @@ export default function PartnerDashboard() {
         </Box>
 
         <Flex justifyContent={"center"}>
+          <NavLink to={"/company-details"}>
           <Button leftIcon={<AddIcon />} colorScheme={"messenger"}>
             Add Deals
           </Button>
+          </NavLink>
         </Flex>
       </Box>
     </Box>
