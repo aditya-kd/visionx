@@ -20,13 +20,13 @@ export default function CompanyDetails() {
       <Flex m={"4"} justifyContent={"space-between"}>
         <Heading>Company Details</Heading>
         <NavLink to={"/partner-dashboard"}>
-        <Button
-          leftIcon={<ArrowBackIcon />}
-          borderRadius={"3xl"}
-          colorScheme={"messenger"}
-        >
-          Back to Dashboard
-        </Button>
+          <Button
+            leftIcon={<ArrowBackIcon />}
+            borderRadius={"3xl"}
+            colorScheme={"messenger"}
+          >
+            Back to Dashboard
+          </Button>
         </NavLink>
       </Flex>
 
@@ -101,7 +101,9 @@ export default function CompanyDetails() {
           </VStack>
         </SimpleGrid>
         <Flex p={"4"} m={"4"} justifyContent={"center"}>
+          <NavLink to={"/partner-deals"}>
             <Button colorScheme={"whatsapp"}>Add Details</Button>
+          </NavLink>
         </Flex>
       </Box>
     </Box>
