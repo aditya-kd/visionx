@@ -190,7 +190,7 @@ const LoginForm = () => {
         setVerify({
           verification: true,
         });
-        
+
 
         // ...
       })
@@ -203,20 +203,39 @@ const LoginForm = () => {
   };
 
 
-    const handleClick = () => {
-      signInWithPopup(auth,provider)
-      .then((data)=>{
-          // const user = data.user.email;
-          // const pass = data.user.uid
-          console.log(data.user);
-          alert("User registered");
-          console.log(data.user.displayName,data.user.email);
+  const handleClick = () => {
+    signInWithPopup(auth, provider)
+      .then((data) => {
+        // console.log(data.user);
+        // console.log(data.user.email);
+        // console.log(data.user.displayName);
+        alert("User registered");
+        console.log(data.user.displayName, data.user.email);
+        const url = "http://localhost:5000/register";
+        fetch(url, {
+          method: "POST",
+          crossDomain: true,
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Acess-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            email: data.user.email,
+            password: data.user.uid,
+            mobile: data.user.phoneNumber,
+          }),
+        }).then((data) => {
+          console.log(data);
+          console.log("registered");
           navigate("/investor-details");
+        })
+
 
       }).catch((error) => {
-          console.log(error);  
+        console.log(error);
       });
-    }
+  }
 
 
 
@@ -312,7 +331,7 @@ const LoginForm = () => {
             </Alert>
           ) : null}
 
-        {/* Verify Button */}
+          {/* Verify Button */}
 
         </FormControl>
         <Button
@@ -367,12 +386,12 @@ const LoginForm = () => {
 
         {/* Sign With Google Button */}
 
-        <Button 
+        <Button
           border={"1px"}
           width="full"
           mt={4}
           onClick={handleClick}
-          >
+        >
           <FcGoogle align={"center"} />
           <Text> Sign in with Google</Text>
         </Button>
