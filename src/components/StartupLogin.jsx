@@ -400,7 +400,7 @@ const LoginForm = () => {
         {/* Don't have an account? */}
 
         <Box textAlign="center" pt={4} pb={3} color={"grey"}>
-          Don't have an account? <Link color="blue.500">Sign up</Link>
+          Don't have an account? <Link color="blue.500" href='/startupsignup'>Sign up</Link>
         </Box>
       </form>
       {error && (
