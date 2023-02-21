@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import express from "express";
 import dotenv from "dotenv";
 import User from './model/user.js';
+import Signup from './model/signUp.js';
 import cors from "cors";
 import bcrypt from "bcrypt"
 import Startups from './model/startup.js';
@@ -31,131 +32,174 @@ const PORT = process.env.PORT || 6000;
 
 
 
- app.get('/', async (request, response) => {
-    response.status(200).send({
-      message: 'Hello from VisionX!'
-    })
+app.get('/', async (request, response) => {
+  response.status(200).send({
+    message: 'Hello from VisionX!'
   })
+})
 
 
-app.get("/register", async (request,response) => {
+app.get("/register", async (request, response) => {
   response.status(201).send({
     message: "hello register"
   })
 })
-  
+
 
 // register endpoint
 app.post("/register", async (req, res) => {
- 
-  const {email, password, mobile} = req.body;
+
+  const { email, password, mobile } = req.body;
 
   const hashpassword = await bcrypt.hash(password, 10)
 
 
-  try{
+  try {
 
-    
+
 
     await User.create({
       email,
       password: hashpassword,
       mobile
-      
+
     });
-    res.send({status:"ok"})
-    
+    res.send({ status: "ok" })
+
 
 
   }
 
-  catch(Error) {
+  catch (Error) {
 
-    res.send({status: "error"})
+    res.send({ status: "error" })
   }
 
 
 });
-app.get("/startups", async (request,response) => {
+
+
+
+
+app.get("/signup", async (request, response) => {
+  response.status(201).send({
+    message: "User Signup Details"
+  })
+})
+
+
+// signup endpoint
+app.post("/signup", async (req, res) => {
+
+  const { firstname, lastname, mobile, email, password, } = req.body;
+
+  const hashpassword = await bcrypt.hash(password, 10)
+
+
+  try {
+
+
+
+    await Signup.create({
+      firstname,
+      lastname,
+      mobile,
+      email,
+      password: hashpassword,
+    });
+    res.send({ status: "ok" })
+
+
+
+  }
+
+  catch (Error) {
+
+    res.send({ status: "error" })
+  }
+
+
+});
+app.get("/startups", async (request, response) => {
   response.status(201).send({
     message: "hello startup"
   })
 })
 
-app.post("/startups",async(req,res) => {
-  const {companyName ,companyWebsite,founderName,founderEmail,investment,contact,capitalRequired,yearFounded,
-    fundingRecieved} = req.body;
+app.post("/startups", async (req, res) => {
+  const { companyName, companyWebsite, founderName, founderEmail, investment, contact, capitalRequired, yearFounded,
+    fundingRecieved } = req.body;
 
-    try {
+  try {
 
-      await Startups.create({
+    await Startups.create({
 
-        companyName,
-        companyWebsite,
-         founderName,
-         founderEmail,
-         investment,
-         contact,
-         capitalRequired,
-         yearFounded,
-        fundingRecieved
+      companyName,
+      companyWebsite,
+      founderName,
+      founderEmail,
+      investment,
+      contact,
+      capitalRequired,
+      yearFounded,
+      fundingRecieved
 
-      })
-      res.send({status: 201})
-      
-    } catch (error) {
-    
-      res.send({status: 401})
-      console.log(error);
+    })
+    res.send({ status: 201 })
 
-      
-    }
+  } catch (error) {
+
+    res.send({ status: 401 })
+    console.log(error);
+
+
+  }
 })
 
 
-app.post("/investors",async(req,res) => {
+app.post("/investors", async (req, res) => {
   const { fullName,
-    companyName ,
+    companyName,
     companyWebsite,
     investorType,
     founderEmail,
-    contact,sector} = req.body;
+    contact, sector } = req.body;
 
-    try {
+  try {
 
-      await Investor.create({
+    await Investor.create({
 
-        fullName,
-        companyName ,
-        companyWebsite,
-        investorType,
-        founderEmail,
-        contact,
-        sector
-      })
-      res.send({status: 201})
-      
-    } catch (error) {
-       
-      console.log(error);
-      res.send({status: 401})
+      fullName,
+      companyName,
+      companyWebsite,
+      investorType,
+      founderEmail,
+      contact,
+      sector
+    })
+    res.send({ status: 201 })
 
-      
-    }
+  } catch (error) {
+
+    console.log(error);
+    res.send({ status: 401 })
+
+
+  }
 })
 
 
 
 mongoose.set("strictQuery", false);
-mongoose.connect(process.env.MONGO_URL,{
+mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => {
-  app.listen(PORT, () => 
-      console.log(`server connected on ${PORT} and database connected`)
-     
+  app.listen(PORT, () =>
+    console.log(`server connected on ${PORT} and database connected`)
+
   )
-}).catch((error) =>  console.log(`server did not connected on ${PORT} /n
+}).catch((error) => console.log(`server did not connected on ${PORT} /n
 ${error}`))
 
 

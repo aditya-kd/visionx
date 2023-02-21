@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   ThemeProvider,
   theme,
@@ -28,6 +28,8 @@ import {
   OrderedList,
   UnorderedList,
 } from '@chakra-ui/react'
+import { async } from '@firebase/util';
+import { useNavigate } from 'react-router-dom';
 
 
 const App = () => {
@@ -93,35 +95,110 @@ const LoginHeader = () => {
 }
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+  const [formData,setFormData]=useState({});
+  const [error, setError] = useState(false);
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData);
+    try {
+      const url = "http://localhost:5000/signup";
+      fetch(url, {
+        method: "POST",
+        crossDomain: true,
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          "Acess-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
+          firstname:formData.firstname,
+          lastname:formData.lastname,
+          mobile: formData.mobile,
+          email: formData.email,
+          password: formData.password,          
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          alert("user registered");
+          navigate("/investor-details")
+          console.log(data, "userRegister");
+        });
+
+      console.log("registered");
+    } catch (error) {
+      if (error.response.status === 402) {
+        console.log(error.response.data.message);
+        setError(true);
+      }
+    }
+  };
+  
+
+
   return (
     <Box my={4} textAlign='left'>
-      <form>
+      <form onSubmit={handleSubmit}>
 
       <Stack isInline justifyContent='space-between' mt={4}>
         <FormControl mr={4}>
           <FormLabel>First Name </FormLabel>
-          <Input type='text' placeholder='Enter your first name' />
+          <Input 
+          type='text'
+          name='firstname'
+          onChange={handleChange}
+          value={formData.firstname || ""}
+          placeholder='Enter your first name' />
         </FormControl>
 
         <FormControl ml={4}>
           <FormLabel>Last Name </FormLabel>
-          <Input type='text' placeholder='Enter your last name' />
+          <Input
+           type='text'
+           name='lastname'
+          onChange={handleChange}
+          value={formData.lastname || ""}
+           placeholder='Enter your last name' />
         </FormControl>
         </Stack>
 
         <FormControl mt={4}>
           <FormLabel>Phone Number</FormLabel>
-          <Input type='password' placeholder='+91 941 234 5674' />
+          <Input 
+          type='text'
+          name='mobile'
+          onChange={handleChange}
+          value={formData.mobile || ""} 
+          placeholder='+91 941 234 5674' />
         </FormControl>
 
         <FormControl mt={4}>
           <FormLabel>Email</FormLabel>
-          <Input type='password' placeholder='email@example.com' />
+          <Input 
+          type='email' 
+          name='email'
+          onChange={handleChange}
+          value={formData.email || ""}
+          placeholder='email@example.com' />
         </FormControl>
 
         <FormControl mt={4}>
           <FormLabel>Create a password</FormLabel>
-          <Input type='password' placeholder='' />
+          <Input 
+          type='password' 
+          name='password'
+          onChange={handleChange}
+          value={formData.password || ""}
+          placeholder='Enter Your Password' />
         </FormControl>
 
         <Box color={'blue'} mt={4}>
@@ -132,7 +209,15 @@ const LoginForm = () => {
           </UnorderedList>
         </Box>
 
-        <Button backgroundColor="blue" color={"white"} width='full' mt={4}>Sign Up</Button>
+        <Button 
+        type='submit'
+        onClick={handleSubmit}
+        backgroundColor="blue" 
+        color={"white"} 
+        width='full' 
+        mt={4}
+        >Sign Up
+        </Button>
         
       </form>
     </Box>
