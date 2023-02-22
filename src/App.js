@@ -23,6 +23,7 @@ import CompanyDetails from "./components/partners/CompanyDetails";
 import PartnerDeals from "./components/partners/PartnerDeals";
 import InvestorSignup from './components/InvestorSignup';
 import StartupSignup from './components/StartupSignup';
+import Details from './components/partners/Details';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
           <Route path="/partner-deals" element={<PartnerDeals />} />
           <Route path='/investorsignup' element={<InvestorSignup/>} />
           <Route path='/startupsignup' element={<StartupSignup/>} />
+          <Route path='/details' element={<Details/>} />
         </Routes>
       </BrowserRouter>
     </Box>

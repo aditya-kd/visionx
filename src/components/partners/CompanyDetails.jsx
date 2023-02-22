@@ -101,7 +101,7 @@ export default function CompanyDetails() {
           </VStack>
         </SimpleGrid>
         <Flex p={"4"} m={"4"} justifyContent={"center"}>
-          <NavLink to={"/partner-deals"}>
+          <NavLink to={"/details"}>
             <Button colorScheme={"whatsapp"}>Add Details</Button>
           </NavLink>
         </Flex>
