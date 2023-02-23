@@ -16,7 +16,7 @@ import {
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export default function StartupDetails() {
+export default function InvestorDetails() {
   return (
     <Box display={"grid"} gridTemplateColumns={"25% 75%"}>
       <Box
@@ -137,21 +137,18 @@ export default function StartupDetails() {
                       />
                     </FormControl>
                   </Box>
+                  <Box>
+                      <Button type="submit" colorScheme={"whatsapp"} width={'fit-content'}>
+                      Verify Email by clicking here*
+                      </Button>
+                  </Box>
+                  <Box>
+                      <Button type="submit" colorScheme={"whatsapp"} width={'fit-content'}>
+                      Verify Phone by clicking here*
+                      </Button>
+                  </Box>
                 </Stack>
               </SimpleGrid>
-            </Box>
-
-            <Box pl={"30px"}>
-              <Box pb={4}>
-                <Link textDecoration={"underline"}>
-                  Verify Email by clicking here*
-                </Link>
-              </Box>
-              <Box>
-                <Link textDecoration={"underline"}>
-                  Verify Phone by clicking here*
-                </Link>
-              </Box>
             </Box>
 
             <Flex justifyContent="center" p={"4"} m={"4"}>

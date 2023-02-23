@@ -251,15 +251,16 @@ export default function StartupDetails() {
 
                   <Box p={"4"} m={"4"}>
                     <VStack>
+                        <Button type="submit" colorScheme={"whatsapp"}>
+                        Verify Email by clicking here*
+                        </Button>
                       <Box>
-                        <Link textDecoration={"underline"}>
-                          Verify Email by clicking here*
-                        </Link>
+                        
+                      <Box>
+                        <Button type="submit" colorScheme={"whatsapp"}>
+                        Verify Phone by clicking here*
+                        </Button>
                       </Box>
-                      <Box>
-                        <Link textDecoration={"underline"}>
-                          Verify Phone by clicking here*
-                        </Link>
                       </Box>
                     </VStack>
                   </Box>

@@ -56,8 +56,8 @@ function App() {
           <Route path="/partner-success" element={<PartnerSuccess />} />
           <Route path="/company-details" element={<CompanyDetails />} />
           <Route path="/partner-deals" element={<PartnerDeals />} />
-          <Route path='/investorsignup' element={<InvestorSignup />} />
-          <Route path='/startupsignup' element={<StartupSignup />} />
+          <Route path='/investor-signup' element={<InvestorSignup />} />
+          <Route path='/startup-signup' element={<StartupSignup />} />
           <Route path='/details' element={<Details />} />
           <Route path='/partner-login' element={<PartnerLogin />} />
           <Route path='/partner-signup' element={<PartnerSignup />} />
