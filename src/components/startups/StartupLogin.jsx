@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import app from "./otp-auth/firebase-config";
+import app from "../otp-auth/firebase-config";
 import {
   getAuth,
   RecaptchaVerifier,
@@ -53,7 +53,7 @@ const LoginArea = () => {
           alignItems={"center"}
           justifyContent={"center"}
         >
-          <Flex borderRadius={"2xl"} bgColor={"#F7C0BC"} p={"20"}>
+          <Flex borderRadius={"2xl"} bgColor={"blue.200"} p={"20"}>
             <Text color={"white"}>Service to our Customers</Text>
           </Flex>
         </Flex>
@@ -190,7 +190,7 @@ const LoginForm = () => {
         setVerify({
           verification: true,
         });
-
+        // navigate("/dashboard");
 
         // ...
       })
@@ -228,7 +228,7 @@ const LoginForm = () => {
         }).then((data) => {
           console.log(data);
           console.log("registered");
-          navigate("/investor-details");
+          navigate("/startupdetails");
         })
 
 
@@ -250,7 +250,7 @@ const LoginForm = () => {
         crossDomain: true,
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json",
+          Accept: "application/json",
           "Acess-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
@@ -262,7 +262,7 @@ const LoginForm = () => {
         .then((res) => res.json())
         .then((data) => {
           alert("user registered");
-          verify.verifyOtp !== null ? navigate("/investor-details") : alert("invalid OTP")
+          verify.verifyOtp !== null ? navigate("/startupdetails") : alert("invalid OTP")
           console.log(data, "userRegister");
         });
 
@@ -331,7 +331,7 @@ const LoginForm = () => {
             </Alert>
           ) : null}
 
-          {/* Verify Button */}
+        {/* Verify Button */}
 
         </FormControl>
         <Button
@@ -386,12 +386,12 @@ const LoginForm = () => {
 
         {/* Sign With Google Button */}
 
-        <Button
+        <Button 
           border={"1px"}
           width="full"
           mt={4}
           onClick={handleClick}
-        >
+          >
           <FcGoogle align={"center"} />
           <Text> Sign in with Google</Text>
         </Button>
@@ -419,7 +419,7 @@ const LoginForm = () => {
         {/* Don't have an account? */}
 
         <Box textAlign="center" pt={4} pb={3} color={"grey"}>
-          Don't have an account? <Link color="blue.500" href="/investor-signup">Sign up</Link>
+          Don't have an account? <Link color="blue.500" href='/startup-signup'>Sign up</Link>
         </Box>
       </form>
       {error && (

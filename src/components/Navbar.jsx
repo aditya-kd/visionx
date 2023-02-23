@@ -49,7 +49,7 @@ export default function Navbar() {
           <Link to={"/start-ups"}>
             <li className="navbar-li">Start-ups</li>
           </Link>
-          <Link to={"/partners"}>
+          <Link to={"/partner-login"}>
             <li className="navbar-li">Partners</li>
           </Link>
           <Link to={"/investors"}>

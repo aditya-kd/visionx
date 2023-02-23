@@ -19,6 +19,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { BsFillChatLeftTextFill } from "react-icons/bs";
+import ProductsPage from "./ProductsPage";
 
 export default function LandingPage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -110,6 +111,7 @@ export default function LandingPage() {
               borderRadius="full"
               position={"fixed"}
               _hover={{ cursor: "pointer"}}
+              onClick={onOpen}
             >
               <BsFillChatLeftTextFill onClick={onOpen} />
               <Modal
@@ -171,6 +173,7 @@ export default function LandingPage() {
           </Text>
         </Box>
       </Box>
+      <ProductsPage />
     </Box>
   );
 }
