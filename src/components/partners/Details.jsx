@@ -106,7 +106,7 @@ import {
             </Table>
           </TableContainer>
           <Flex justifyContent={"center"}>
-            <NavLink to={"/partner-deals"}>
+            <NavLink to={"/details-overview"}>
               <Button width={"52"} colorScheme={'whatsapp'}>
                 Save Details
               </Button>

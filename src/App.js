@@ -27,6 +27,8 @@ import Details from './components/partners/Details';
 import PartnerLogin from './components/partners/PartnerLogin';
 import PartnerSignup from './components/partners/PartnerSignup';
 import DealSubmitted from "./components/partners/DealSubmitted";
+import StartUpUploadDocument from "./components/StartUpUploadDocument";
+import DetailsOverview from "./components/partners/DetailsOverview";
 
 function App() {
   return (
@@ -54,12 +56,14 @@ function App() {
           <Route path="/partner-success" element={<PartnerSuccess />} />
           <Route path="/company-details" element={<CompanyDetails />} />
           <Route path="/partner-deals" element={<PartnerDeals />} />
-          <Route path='/investorsignup' element={<InvestorSignup/>} />
-          <Route path='/startupsignup' element={<StartupSignup/>} />
-          <Route path='/details' element={<Details/>} />
-          <Route path='/partner-login' element={<PartnerLogin/>} />
-          <Route path='/partner-signup' element={<PartnerSignup/>} />
-          <Route path='/dealsubmitted' element={<DealSubmitted/>} />
+          <Route path='/investorsignup' element={<InvestorSignup />} />
+          <Route path='/startupsignup' element={<StartupSignup />} />
+          <Route path='/details' element={<Details />} />
+          <Route path='/partner-login' element={<PartnerLogin />} />
+          <Route path='/partner-signup' element={<PartnerSignup />} />
+          <Route path='/dealsubmitted' element={<DealSubmitted />} />
+          <Route path='/startup-upload-document' element={<StartUpUploadDocument />} />
+          <Route path='/details-overview' element={<DetailsOverview />} />
 
         </Routes>
       </BrowserRouter>
