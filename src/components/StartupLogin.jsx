@@ -228,7 +228,7 @@ const LoginForm = () => {
         }).then((data) => {
           console.log(data);
           console.log("registered");
-          navigate("/investor-details");
+          navigate("/startupdetails");
         })
 
 

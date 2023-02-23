@@ -130,7 +130,7 @@ const LoginForm = () => {
         .then((res) => res.json())
         .then((data) => {
           alert("user registered");
-          navigate("/investor-details")
+          navigate("/startupdetails")
           console.log(data, "userRegister");
         });
 
