@@ -26,6 +26,7 @@ import StartupSignup from './components/StartupSignup';
 import Details from './components/partners/Details';
 import PartnerLogin from './components/partners/PartnerLogin';
 import PartnerSignup from './components/partners/PartnerSignup';
+import DealSubmitted from "./components/partners/DealSubmitted";
 
 function App() {
   return (
@@ -56,8 +57,9 @@ function App() {
           <Route path='/investorsignup' element={<InvestorSignup/>} />
           <Route path='/startupsignup' element={<StartupSignup/>} />
           <Route path='/details' element={<Details/>} />
-          <Route path='/PartnerLogin' element={<PartnerLogin/>} />
-          <Route path='/Partner-SignUp' element={<PartnerSignup/>} />
+          <Route path='/partner-login' element={<PartnerLogin/>} />
+          <Route path='/partner-signup' element={<PartnerSignup/>} />
+          <Route path='/dealsubmitted' element={<DealSubmitted/>} />
 
         </Routes>
       </BrowserRouter>

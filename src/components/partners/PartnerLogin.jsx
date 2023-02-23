@@ -106,7 +106,7 @@ const LoginForm = () => {
         
 
         <Box textAlign='center'pt={5} color={'grey'}>
-          Don't have an account? <Link href={'/partner-SignUp'} color="blue.500">Sign up</Link>
+          Don't have an account? <Link href={'/partner-signup'} color="blue.500">Sign up</Link>
         </Box>
       </form>
     </Box>
