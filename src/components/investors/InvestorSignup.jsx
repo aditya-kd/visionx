@@ -60,25 +60,25 @@ const LoginArea = () => {
           </Flex>
         </Flex>
 
-      
-    <Flex minHeight='100vh' width='full' align='center' justifyContent='center'>
-      <Box 
-        borderWidth={1}
-        px={4}
-        width='full'
-        maxWidth='500px'
-        borderRadius={4}
-        textAlign='center'
-        boxShadow='lg'
-        background={"white"}
-      >
-        <Box p={6} pb={4}>
-          <LoginHeader />
-          <LoginForm />
-        </Box>
+
+        <Flex minHeight='100vh' width='full' align='center' justifyContent='center'>
+          <Box
+            borderWidth={1}
+            px={4}
+            width='full'
+            maxWidth='500px'
+            borderRadius={4}
+            textAlign='center'
+            boxShadow='lg'
+            background={"white"}
+          >
+            <Box p={6} pb={4}>
+              <LoginHeader />
+              <LoginForm />
+            </Box>
+          </Box>
+        </Flex>
       </Box>
-    </Flex>
-    </Box>
     </Box>
   )
 }
@@ -96,7 +96,7 @@ const LoginHeader = () => {
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const [formData,setFormData]=useState({});
+  const [formData, setFormData] = useState({});
   const [error, setError] = useState(false);
 
   const handleChange = (event) => {
@@ -109,7 +109,10 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
+
     try {
+
+
       const url = "http://localhost:5000/signup";
       fetch(url, {
         method: "POST",
@@ -120,22 +123,27 @@ const LoginForm = () => {
           "Acess-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
-          firstname:formData.firstname,
-          lastname:formData.lastname,
+          firstname: formData.firstname,
+          lastname: formData.lastname,
           mobile: formData.mobile,
           email: formData.email,
-          password: formData.password,          
+          password: formData.password,
+          type: "Investor",
         }),
       })
         .then((res) => res.json())
         .then((data) => {
-          alert("user registered");
+          alert("Investor registered");
           navigate("/investor-details")
           console.log(data, "userRegister");
         });
 
-      console.log("registered");
-    } catch (error) {
+      console.log("Investor registered");
+    }
+
+    catch (error) {
+
+
       if (error.response.status === 402) {
         console.log(error)
         console.log(error.response.data.message);
@@ -143,63 +151,63 @@ const LoginForm = () => {
       }
     }
   };
-  
+
 
 
   return (
     <Box my={4} textAlign='left'>
       <form onSubmit={handleSubmit}>
 
-      <Stack isInline justifyContent='space-between' mt={4}>
-        <FormControl mr={4}>
-          <FormLabel>First Name </FormLabel>
-          <Input 
-          type='text'
-          name='firstname'
-          onChange={handleChange}
-          value={formData.firstname || ""}
-          placeholder='Enter your first name' />
-        </FormControl>
+        <Stack isInline justifyContent='space-between' mt={4}>
+          <FormControl mr={4}>
+            <FormLabel>First Name </FormLabel>
+            <Input
+              type='text'
+              name='firstname'
+              onChange={handleChange}
+              value={formData.firstname || ""}
+              placeholder='Enter your first name' />
+          </FormControl>
 
-        <FormControl ml={4}>
-          <FormLabel>Last Name </FormLabel>
-          <Input
-           type='text'
-           name='lastname'
-          onChange={handleChange}
-          value={formData.lastname || ""}
-           placeholder='Enter your last name' />
-        </FormControl>
+          <FormControl ml={4}>
+            <FormLabel>Last Name </FormLabel>
+            <Input
+              type='text'
+              name='lastname'
+              onChange={handleChange}
+              value={formData.lastname || ""}
+              placeholder='Enter your last name' />
+          </FormControl>
         </Stack>
 
         <FormControl mt={4}>
           <FormLabel>Phone Number</FormLabel>
-          <Input 
-          type='text'
-          name='mobile'
-          onChange={handleChange}
-          value={formData.mobile || ""} 
-          placeholder='+91 941 234 5674' />
+          <Input
+            type='text'
+            name='mobile'
+            onChange={handleChange}
+            value={formData.mobile || ""}
+            placeholder='+91 941 234 5674' />
         </FormControl>
 
         <FormControl mt={4}>
           <FormLabel>Email</FormLabel>
-          <Input 
-          type='email' 
-          name='email'
-          onChange={handleChange}
-          value={formData.email || ""}
-          placeholder='email@example.com' />
+          <Input
+            type='email'
+            name='email'
+            onChange={handleChange}
+            value={formData.email || ""}
+            placeholder='email@example.com' />
         </FormControl>
 
         <FormControl mt={4}>
           <FormLabel>Create a password</FormLabel>
-          <Input 
-          type='password' 
-          name='password'
-          onChange={handleChange}
-          value={formData.password || ""}
-          placeholder='Enter Your Password' />
+          <Input
+            type='password'
+            name='password'
+            onChange={handleChange}
+            value={formData.password || ""}
+            placeholder='Enter Your Password' />
         </FormControl>
 
         <Box color={'blue'} mt={4}>
@@ -210,16 +218,16 @@ const LoginForm = () => {
           </UnorderedList>
         </Box>
 
-        <Button 
-        type='submit'
-        onClick={handleSubmit}
-        backgroundColor="blue" 
-        color={"white"} 
-        width='full' 
-        mt={4}
+        <Button
+          type='submit'
+          onClick={handleSubmit}
+          backgroundColor="blue"
+          color={"white"}
+          width='full'
+          mt={4}
         >Sign Up
         </Button>
-        
+
       </form>
     </Box>
   )

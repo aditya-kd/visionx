@@ -23,11 +23,15 @@ const usersignUpSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, "Please provide a password!"],
-       
+
+    },
+    type: {
+        type: String,
+        required: true
     },
 
 })
 
-const Signup = mongoose.model("Signups",usersignUpSchema)
+const Signup = mongoose.model("Signups", usersignUpSchema)
 
 export default Signup;
