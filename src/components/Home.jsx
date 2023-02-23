@@ -42,7 +42,7 @@ export default function LandingPage() {
 
             <Box className="page-content">
               <Text fontSize={["", "", "md"]} m="4" ml={"0"}>
-                Vision-X provides and effective and powerful way to manange your
+                V!nest provides and effective and powerful way to manange your
                 products
               </Text>
               <Button
