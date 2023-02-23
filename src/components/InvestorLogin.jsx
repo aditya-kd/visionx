@@ -217,7 +217,7 @@ const LoginForm = () => {
           crossDomain: true,
           headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json",
+            Accept: "application/json",
             "Acess-Control-Allow-Origin": "*",
           },
           body: JSON.stringify({

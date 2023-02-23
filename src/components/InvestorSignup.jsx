@@ -116,7 +116,7 @@ const LoginForm = () => {
         crossDomain: true,
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json",
+          Accept: "application/json",
           "Acess-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
@@ -137,6 +137,7 @@ const LoginForm = () => {
       console.log("registered");
     } catch (error) {
       if (error.response.status === 402) {
+        console.log(error)
         console.log(error.response.data.message);
         setError(true);
       }

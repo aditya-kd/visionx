@@ -116,6 +116,7 @@ app.post("/signup", async (req, res) => {
   catch (Error) {
 
     res.send({ status: "error" })
+    console.log(Error);
   }
 
 

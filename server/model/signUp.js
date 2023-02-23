@@ -5,17 +5,15 @@ const usersignUpSchema = new mongoose.Schema({
     firstname: {
         type: String,
         required: [true, "Please provide First name"],
-        unique: false,
     },
     lastname: {
         type: String,
         required: [true, "Please provide First name"],
-        unique: false,
     },
     mobile: {
         type: String,
         require: [true, "Please provide Mobile Number"],
-        unique: false,
+        unique: true,
     },
     email: {
         type: String,
@@ -25,7 +23,7 @@ const usersignUpSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, "Please provide a password!"],
-        unique: false,
+       
     },
 
 })
