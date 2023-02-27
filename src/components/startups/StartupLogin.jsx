@@ -202,7 +202,6 @@ const LoginForm = () => {
       });
   };
 
-
   const handleClick = () => {
     signInWithPopup(auth, provider)
       .then((data) => {
@@ -229,16 +228,12 @@ const LoginForm = () => {
           console.log(data);
           console.log("registered");
           navigate("/startupdetails");
-        })
-
-
-      }).catch((error) => {
+        });
+      })
+      .catch((error) => {
         console.log(error);
       });
-  }
-
-
-
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -262,7 +257,9 @@ const LoginForm = () => {
         .then((res) => res.json())
         .then((data) => {
           alert("user registered");
-          verify.verifyOtp !== null ? navigate("/startupdetails") : alert("invalid OTP")
+          verify.verifyOtp !== null
+            ? navigate("/startupdetails")
+            : alert("invalid OTP");
           console.log(data, "userRegister");
         });
 
@@ -276,10 +273,8 @@ const LoginForm = () => {
   };
 
   return (
-
     <Box m={6} textAlign="left">
       <form onSubmit={handleSubmit}>
-
         {/* Email Input Field */}
 
         <FormControl>
@@ -331,8 +326,7 @@ const LoginForm = () => {
             </Alert>
           ) : null}
 
-        {/* Verify Button */}
-
+          {/* Verify Button */}
         </FormControl>
         <Button
           backgroundColor={verify.verifyButton === true ? "blue" : "gray"}
@@ -343,6 +337,7 @@ const LoginForm = () => {
         >
           Verify
         </Button>
+        
 
         {/* Verify OTP Button */}
 
@@ -368,7 +363,6 @@ const LoginForm = () => {
           </>
         ) : null}
 
-
         {/* Sign In Button */}
 
         <Button
@@ -386,18 +380,12 @@ const LoginForm = () => {
 
         {/* Sign With Google Button */}
 
-        <Button 
-          border={"1px"}
-          width="full"
-          mt={4}
-          onClick={handleClick}
-          >
+        <Button border={"1px"} width="full" mt={4} onClick={handleClick}>
           <FcGoogle align={"center"} />
           <Text> Sign in with Google</Text>
         </Button>
         <div id="recaptcha-container"></div>
         <Stack isInline justifyContent="space-between" mt={4}>
-
           {/* Remember For 30 Days */}
 
           <Box>
@@ -419,7 +407,10 @@ const LoginForm = () => {
         {/* Don't have an account? */}
 
         <Box textAlign="center" pt={4} pb={3} color={"grey"}>
-          Don't have an account? <Link color="blue.500" href='/startup-signup'>Sign up</Link>
+          Don't have an account?{" "}
+          <Link color="blue.500" href="/startup-signup">
+            Sign up
+          </Link>
         </Box>
       </form>
       {error && (

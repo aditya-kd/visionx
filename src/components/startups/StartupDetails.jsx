@@ -7,7 +7,6 @@ import {
   HStack,
   Image,
   Input,
-  Link,
   Radio,
   RadioGroup,
   Select,
@@ -251,16 +250,15 @@ export default function StartupDetails() {
 
                   <Box p={"4"} m={"4"}>
                     <VStack>
-                        <Button type="submit" colorScheme={"whatsapp"}>
+                      <Button type="submit" colorScheme={"whatsapp"}>
                         Verify Email by clicking here*
-                        </Button>
+                      </Button>
                       <Box>
-                        
-                      <Box>
-                        <Button type="submit" colorScheme={"whatsapp"}>
-                        Verify Phone by clicking here*
-                        </Button>
-                      </Box>
+                        <Box>
+                          <Button type="submit" colorScheme={"whatsapp"}>
+                            Verify Phone by clicking here*
+                          </Button>
+                        </Box>
                       </Box>
                     </VStack>
                   </Box>

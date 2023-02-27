@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Flex,
-  Heading,
   Image,
   Text,
   useDisclosure,
@@ -110,7 +109,7 @@ export default function LandingPage() {
               p={"3"}
               borderRadius="full"
               position={"fixed"}
-              _hover={{ cursor: "pointer"}}
+              _hover={{ cursor: "pointer" }}
               onClick={onOpen}
             >
               <BsFillChatLeftTextFill onClick={onOpen} />
@@ -177,4 +176,3 @@ export default function LandingPage() {
     </Box>
   );
 }
-

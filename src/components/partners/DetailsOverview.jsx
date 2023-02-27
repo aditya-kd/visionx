@@ -1,5 +1,5 @@
 
-import { Box, Text, Flex, Grid, SimpleGrid, Button, Divider, GridItem } from "@chakra-ui/react";
+import { Box, Text, Flex, SimpleGrid, Button, Divider } from "@chakra-ui/react";
 import React from "react";
 import { FiCheckCircle } from 'react-icons/fi';
 import {BsDashCircle} from 'react-icons/bs';

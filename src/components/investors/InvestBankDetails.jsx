@@ -7,7 +7,6 @@ import {
   HStack,
   Image,
   Input,
-  Link,
   Select,
   SimpleGrid,
   Stack,
