@@ -35,7 +35,7 @@ export default function StartupDetails() {
     console.log(startupData);
 
     try {
-      const url = "http://localhost:5000/startups";
+      const url = "https://visionx.onrender.com/startups";
       fetch(url, {
         method: "POST",
         crossDomain: true,

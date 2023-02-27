@@ -99,7 +99,7 @@ const LoginForm = () => {
     e.preventDefault();
     console.log(formData);
     try {
-      const url = "http://localhost:5000/signup";
+      const url = "https://visionx.onrender.com/signup";
       fetch(url, {
         method: "POST",
         crossDomain: true,
