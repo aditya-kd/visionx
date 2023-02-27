@@ -22,7 +22,7 @@ export default function StartUpSuccess() {
             />
           </Flex>
           <Flex justifyContent={"center"}>
-            <Heading>Vision-X</Heading>
+            <Heading>V!nest</Heading>
           </Flex>
         </Box>
       </Box>

@@ -114,16 +114,17 @@ const LoginForm = () => {
           mobile: formData.mobile,
           email: formData.email,
           password: formData.password,
+          type: "Startup",
         }),
       })
         .then((res) => res.json())
         .then((data) => {
-          alert("user registered");
+          alert("Startup registered");
           navigate("/startupdetails");
           console.log(data, "userRegister");
         });
 
-      console.log("registered");
+      console.log("Startup registered");
     } catch (error) {
       if (error.response.status === 402) {
         console.log(error.response.data.message);

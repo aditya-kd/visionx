@@ -36,7 +36,7 @@ export default function Navbar() {
           <ListItem p={"2"} className="navbar-li">
             <Link to={"/"}>
               <Text as={"b"} fontSize={"x-large"}>
-                Vision-X
+                V!nest
               </Text>
             </Link>
           </ListItem>
@@ -85,7 +85,7 @@ export default function Navbar() {
         <Flex m={"1"}>
           <Link to={"/"}>
             <Text as={"b"} fontSize={"x-large"} className={"navbar-ul"}>
-              Vision-X
+              V!nest
             </Text>
           </Link>
         </Flex>
@@ -103,7 +103,7 @@ export default function Navbar() {
             <DrawerOverlay />
             <DrawerContent>
               <DrawerCloseButton />
-              <DrawerHeader>Vision-X</DrawerHeader>
+              <DrawerHeader>V!nest</DrawerHeader>
 
               <DrawerBody p={"0"}>
                 <UnorderedList

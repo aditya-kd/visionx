@@ -17,7 +17,7 @@ export default function PartnerSuccess() {
           <Image src="/images/partner-success.jpg" />
         </Box>
         <Box>
-          <Text color={"GrayText"} fontSize={"3xl"}>Vision-X</Text>
+          <Text color={"GrayText"} fontSize={"3xl"}>V!nest</Text>
         </Box>
       </Flex>
 

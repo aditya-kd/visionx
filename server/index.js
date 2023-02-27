@@ -91,7 +91,7 @@ app.get("/signup", async (request, response) => {
 // signup endpoint
 app.post("/signup", async (req, res) => {
 
-  const { firstname, lastname, mobile, email, password, } = req.body;
+  const { firstname, lastname, mobile, email, password, type } = req.body;
 
   const hashpassword = await bcrypt.hash(password, 10)
 
@@ -106,6 +106,7 @@ app.post("/signup", async (req, res) => {
       mobile,
       email,
       password: hashpassword,
+      type,
     });
     res.send({ status: "ok" })
 
@@ -114,9 +115,8 @@ app.post("/signup", async (req, res) => {
   }
 
   catch (Error) {
-
-    res.send({ status: "error" })
     console.log(Error);
+    res.send({ status: "error" })
   }
 
 
