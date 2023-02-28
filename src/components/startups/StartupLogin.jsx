@@ -26,6 +26,7 @@ import {
   Alert,
   AlertIcon,
   AlertTitle,
+  Divider,
 } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 
@@ -100,12 +101,21 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(false);
+  const [loginMode, setLoginMode] = useState("email");
 
   const [verify, setVerify] = useState({
     verifyButton: false,
     verifyOtp: null,
     verification: false,
   });
+
+  const changeLoginMode = () => {
+    if (loginMode === "email") {
+      setLoginMode("contact");
+    } else {
+      setLoginMode("email");
+    }
+  };
 
   const handleChange = (event) => {
     setFormData({
@@ -190,7 +200,7 @@ const LoginForm = () => {
         setVerify({
           verification: true,
         });
-        // navigate("/dashboard");
+        navigate("/dashboard");
 
         // ...
       })
@@ -275,92 +285,99 @@ const LoginForm = () => {
   return (
     <Box m={6} textAlign="left">
       <form onSubmit={handleSubmit}>
-        {/* Email Input Field */}
+        {loginMode === "email" ? (
+          <Box>
+            {/* Email Input Field */}
 
-        <FormControl>
-          <FormLabel>Email </FormLabel>
-          <Input
-            type="email"
-            name="email"
-            onChange={handleChange}
-            value={formData.email || ""}
-            color={"grey"}
-            placeholder="Enter your email "
-          />
-        </FormControl>
-
-        {/* Password Input Field */}
-
-        <FormControl mt={4}>
-          <FormLabel>Password</FormLabel>
-          <Input
-            type="password"
-            name="password"
-            onChange={handleChange}
-            value={formData.password || ""}
-            placeholder="Enter your password"
-          />
-        </FormControl>
-
-        {/* Mobile Number Input Field */}
-
-        <FormControl mt={4}>
-          <FormLabel>Mobile Number</FormLabel>
-          <Input
-            type="number"
-            name="mobile"
-            onChange={handleMobileChange}
-            value={formData.mobile || ""}
-            placeholder="Enter your mobile number"
-          />
-          {verify.verifyOtp === true ? (
-            <Alert status="success" mt={"1"}>
-              <AlertIcon />
-              OTP sent successfully!
-            </Alert>
-          ) : null}
-          {verify.verifyOtp === false ? (
-            <Alert mt={"1"} status="error">
-              <AlertIcon />
-              There was an error processing your request. Please try later.
-            </Alert>
-          ) : null}
-
-          {/* Verify Button */}
-        </FormControl>
-        <Button
-          backgroundColor={verify.verifyButton === true ? "blue" : "gray"}
-          textColor={verify.verifyButton === true ? "white" : "lightgray"}
-          cursor={verify.verifyButton === true ? "pointer" : "not-allowed"}
-          mt={4}
-          onClick={onSignInSubmit}
-        >
-          Verify
-        </Button>
-        
-
-        {/* Verify OTP Button */}
-
-        {verify.verifyOtp === true ? (
-          <>
-            <FormControl mt={4}>
-              <FormLabel>OTP:</FormLabel>
+            <FormControl>
+              <FormLabel>Email </FormLabel>
               <Input
-                type="text"
-                name="otp"
+                type="email"
+                name="email"
                 onChange={handleChange}
-                placeholder="Enter your OTP"
+                value={formData.email || ""}
+                color={"grey"}
+                placeholder="Enter your email "
               />
             </FormControl>
+
+            {/* Password Input Field */}
+
+            <FormControl mt={4}>
+              <FormLabel>Password</FormLabel>
+              <Input
+                type="password"
+                name="password"
+                onChange={handleChange}
+                value={formData.password || ""}
+                placeholder="Enter your password"
+              />
+            </FormControl>
+          </Box>
+        ) : null}
+
+        {loginMode === "contact" ? (
+          <Box>
+            {/* Mobile Number Input Field */}
+
+            <FormControl mt={4}>
+              <FormLabel>Mobile Number</FormLabel>
+              <Input
+                type="number"
+                name="mobile"
+                onChange={handleMobileChange}
+                value={formData.mobile || ""}
+                placeholder="Enter your mobile number"
+              />
+              {verify.verifyOtp === true ? (
+                <Alert status="success" mt={"1"}>
+                  <AlertIcon />
+                  OTP sent successfully!
+                </Alert>
+              ) : null}
+              {verify.verifyOtp === false ? (
+                <Alert mt={"1"} status="error">
+                  <AlertIcon />
+                  There was an error processing your request. Please try later.
+                </Alert>
+              ) : null}
+
+              {/* Verify Button */}
+            </FormControl>
             <Button
-              mt={3}
-              backgroundColor="blue"
-              textColor="white"
-              onClick={verifyCode}
+              backgroundColor={verify.verifyButton === true ? "blue" : "gray"}
+              textColor={verify.verifyButton === true ? "white" : "lightgray"}
+              cursor={verify.verifyButton === true ? "pointer" : "not-allowed"}
+              mt={4}
+              onClick={onSignInSubmit}
             >
-              Verify OTP
+              Verify
             </Button>
-          </>
+
+            {/* Verify OTP Button */}
+
+            {verify.verifyOtp === true ? (
+              <>
+                <FormControl mt={4}>
+                  <FormLabel>OTP:</FormLabel>
+                  <Input
+                    type="text"
+                    name="otp"
+                    onChange={handleChange}
+                    placeholder="Enter your OTP"
+                  />
+                </FormControl>
+                <Button
+                  mt={3}
+                  backgroundColor="blue"
+                  textColor="white"
+                  onClick={verifyCode}
+                >
+                  Verify OTP
+                </Button>
+              </>
+            ) : null}
+          </Box>
         ) : null}
 
         {/* Sign In Button */}
@@ -377,6 +394,34 @@ const LoginForm = () => {
         >
           Sign In
         </Button>
+
+        <Divider mt={"2"} border={"1px"} borderColor={"gray.300"} />
+
+        {/* Continue with Phone Number button */}
+
+        {loginMode === "email" ? (
+          <Box>
+            <Button
+              border={"1px"}
+              width="full"
+              mt={4}
+              onClick={changeLoginMode}
+            >
+              <Text>Continue with Phone Number</Text>
+            </Button>
+          </Box>
+        ) : (
+          <Box>
+            <Button
+              border={"1px"}
+              width="full"
+              mt={4}
+              onClick={changeLoginMode}
+            >
+              <Text>Sign In with Email</Text>
+            </Button>
+          </Box>
+        )}
 
         {/* Sign With Google Button */}
 
