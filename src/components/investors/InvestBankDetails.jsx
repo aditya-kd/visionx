@@ -141,11 +141,6 @@ export default function InvestorDetails() {
                       Verify Email by clicking here*
                       </Button>
                   </Box>
-                  <Box>
-                      <Button type="submit" colorScheme={"whatsapp"} width={'fit-content'}>
-                      Verify Phone by clicking here*
-                      </Button>
-                  </Box>
                 </Stack>
               </SimpleGrid>
             </Box>

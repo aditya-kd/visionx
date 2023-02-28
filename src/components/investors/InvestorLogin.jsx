@@ -211,7 +211,7 @@ const LoginForm = () => {
         // console.log(data.user.displayName);
         alert("User registered");
         console.log(data.user.displayName, data.user.email);
-        const url = "http://localhost:5000/register";
+        const url = "https://visionx.onrender.com/register";
         fetch(url, {
           method: "POST",
           crossDomain: true,
