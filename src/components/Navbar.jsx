@@ -12,6 +12,7 @@ import {
   DrawerCloseButton,
   useDisclosure,
   Flex,
+  Image,
 } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import React from "react";
@@ -61,18 +62,22 @@ export default function Navbar() {
           <Link to={"/about"}>
             <li className="navbar-li">About</li>
           </Link>
+          <li className="navbar-li">
+            <Image boxSize={"7"} src="https://www.svgrepo.com/show/507442/user-circle.svg" />
+          </li>
+
           <Link to={"contact-us"}>
-          <ListItem p={"3"}>
-            <Button
-              bgColor={"#FFBF23"}
-              color={"white"}
-              size={"sm"}
-              variant={"ghost"}
-              _hover={{ bgColor: "#FFD369" }}
-            >
-              Contact Us
-            </Button>
-          </ListItem>
+            <ListItem p={"3"}>
+              <Button
+                bgColor={"#FFBF23"}
+                color={"white"}
+                size={"sm"}
+                variant={"ghost"}
+                _hover={{ bgColor: "#FFD369" }}
+              >
+                Contact Us
+              </Button>
+            </ListItem>
           </Link>
         </UnorderedList>
       </Box>
@@ -93,7 +98,7 @@ export default function Navbar() {
           <Button>
             <HamburgerIcon ref={btnRef} onClick={onOpen} />
           </Button>
-  
+
           <Drawer
             isOpen={isOpen}
             placement="left"
