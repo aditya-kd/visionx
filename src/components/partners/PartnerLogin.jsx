@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ThemeProvider,
   theme,
@@ -15,6 +15,7 @@ import {
   Stack,
   Checkbox,
   Button,
+  Divider,
 } from "@chakra-ui/react";
 
 import { FcGoogle } from "react-icons/fc";
@@ -81,40 +82,127 @@ const LoginHeader = () => {
 };
 
 const LoginForm = () => {
+  const [loginMode, setLoginMode] = useState("email");
+
+  const changeLoginMode = () => {
+    if (loginMode === "email") {
+      setLoginMode("contact");
+    } else {
+      setLoginMode("email");
+    }
+  };
   return (
     <Box my={4} textAlign="left">
       <form>
-        <FormControl>
-          <FormLabel>Phone Number </FormLabel>
-          <Input
-            type="email"
-            color={"grey"}
-            placeholder="Enter your phone number "
-          />
-        </FormControl>
-
-        <FormControl mt={4}>
-          <FormLabel>OTP</FormLabel>
-          <Input type="password" placeholder="Enter your OTP" />
-        </FormControl>
-
-        <Stack isInline justifyContent="space-between" mt={4}>
+        {loginMode === "email" ? (
           <Box>
-            <Checkbox>
-              {" "}
-              <Text fontSize={"13px"}>Remember for 30 days</Text>
-            </Checkbox>
-          </Box>
-          <Box>
-            <Link color="blue.500">
-              <Text fontSize={"13px"}>Forgot password? </Text>
-            </Link>
-          </Box>
-        </Stack>
+            {/* Email Input Field */}
 
-        <Button backgroundColor="blue" color={"white"} width="full" mt={3}>
-          Sign In
-        </Button>
+            <FormControl>
+              <FormLabel>Email </FormLabel>
+              <Input
+                type="email"
+                name="partnerEmail"
+                color={"gray"}
+                placeholder="Enter your email "
+              />
+            </FormControl>
+
+            {/* Password Input Field */}
+
+            <FormControl mt={4}>
+              <FormLabel>Password</FormLabel>
+              <Input
+                type="password"
+                name="partnerPassword"
+                placeholder="Enter your password"
+              />
+            </FormControl>
+
+            <Stack isInline justifyContent="space-between" mt={4}>
+              <Box>
+                <Checkbox>
+                  {" "}
+                  <Text fontSize={"13px"}>Remember for 30 days</Text>
+                </Checkbox>
+              </Box>
+              <Box>
+                <Link color="blue.500">
+                  <Text fontSize={"13px"}>Forgot password? </Text>
+                </Link>
+              </Box>
+            </Stack>
+
+            <Button backgroundColor="blue" color={"white"} width="full" mt={3}>
+              Sign In
+            </Button>
+          </Box>
+        ) : null}
+
+        {loginMode === "contact" ? (
+          <Box>
+            <FormControl mt={4}>
+              <FormLabel>Phone Number </FormLabel>
+              <Input
+                type="email"
+                color={"grey"}
+                placeholder="Enter your phone number "
+              />
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>OTP</FormLabel>
+              <Input type="password" placeholder="Enter your OTP" />
+            </FormControl>
+
+            <Stack isInline justifyContent="space-between" mt={4}>
+              <Box>
+                <Checkbox>
+                  {" "}
+                  <Text fontSize={"13px"}>Remember for 30 days</Text>
+                </Checkbox>
+              </Box>
+              <Box>
+                <Link color="blue.500">
+                  <Text fontSize={"13px"}>Forgot password? </Text>
+                </Link>
+              </Box>
+            </Stack>
+
+            <Button backgroundColor="blue" color={"white"} width="full" mt={3}>
+              Sign In
+            </Button>
+          </Box>
+        ) : null}
+
+        <Divider mt={"2"} border={"1px"} borderColor={"gray.300"} />
+
+        {/* Continue with Phone Number button */}
+
+        {loginMode === "email" ? (
+          <Box>
+            <Button
+              border={"1px"}
+              width="full"
+              mt={4}
+              onClick={changeLoginMode}
+            >
+              <Text>Continue with Phone Number</Text>
+            </Button>
+          </Box>
+        ) : (
+          <Box>
+            <Button
+              border={"1px"}
+              width="full"
+              mt={4}
+              onClick={changeLoginMode}
+            >
+              <Text>Sign In with Email</Text>
+            </Button>
+          </Box>
+        )}
+
         <Button border={"1px"} width="full" mt={3}>
           <FcGoogle />
           Sign in with Google
