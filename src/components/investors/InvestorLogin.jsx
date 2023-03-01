@@ -153,7 +153,6 @@ const LoginForm = () => {
       {
         size: "invisible",
         callback: (response) => {
-          onSignInSubmit();
           // reCAPTCHA solved, allow signInWithPhoneNumber.
           // ...
         },
@@ -254,7 +253,7 @@ const LoginForm = () => {
         crossDomain: true,
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json",
+          Accept: "application/json",
           "Acess-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
@@ -343,15 +342,21 @@ const LoginForm = () => {
 
               {/* Verify Button */}
             </FormControl>
-            <Button
-              backgroundColor={verify.verifyButton === true ? "blue" : "gray"}
-              textColor={verify.verifyButton === true ? "white" : "lightgray"}
-              cursor={verify.verifyButton === true ? "pointer" : "not-allowed"}
-              mt={4}
-              onClick={onSignInSubmit}
-            >
-              Verify
-            </Button>
+            <Flex alignItems={"center"}>
+              <Button
+                backgroundColor={verify.verifyButton === true ? "blue" : "gray"}
+                textColor={verify.verifyButton === true ? "white" : "lightgray"}
+                cursor={
+                  verify.verifyButton === true ? "pointer" : "not-allowed"
+                }
+                mt={4}
+                onClick={onSignInSubmit}
+              >
+                Verify
+              </Button>
+
+              
+            </Flex>
 
             {/* Verify OTP Button */}
 
