@@ -153,7 +153,6 @@ const LoginForm = () => {
       {
         size: "invisible",
         callback: (response) => {
-          onSignInSubmit();
           // reCAPTCHA solved, allow signInWithPhoneNumber.
           // ...
         },

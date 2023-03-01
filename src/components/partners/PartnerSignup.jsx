@@ -116,7 +116,7 @@ const LoginForm = () => {
         .then((res) => res.json())
         .then((data) => {
           alert("Partner registered");
-          navigate("/partner-deals");
+          navigate("/partner-success");
           console.log(data, "Partner Registered");
         });
 

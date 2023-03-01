@@ -73,7 +73,7 @@ const LoginArea = () => {
 const LoginHeader = () => {
   return (
     <Box textAlign="center">
-      <Heading fontSize={"30px"}>Welcome to WE-GenX</Heading>
+      <Heading fontSize={"30px"}>Welcome to V!nest</Heading>
       <Text fontSize={"13px"} color={"grey"}>
         Welcome back! Please enter your details.
       </Text>
