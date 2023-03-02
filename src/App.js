@@ -29,6 +29,10 @@ import PartnerSignup from './components/partners/PartnerSignup';
 import DealSubmitted from "./components/partners/DealSubmitted";
 import StartUpUploadDocument from "./components/startups/StartUpUploadDocument";
 import DetailsOverview from "./components/partners/DetailsOverview";
+import Page1 from "./components/startup-details-page/Page1";
+import Page2 from "./components/startup-details-page/Page2";
+import Page3 from "./components/startup-details-page/Page3";
+
 
 function App() {
   return (
@@ -64,6 +68,9 @@ function App() {
           <Route path='/dealsubmitted' element={<DealSubmitted />} />
           <Route path='/startup-upload-document' element={<StartUpUploadDocument />} />
           <Route path='/details-overview' element={<DetailsOverview />} />
+          <Route path='/startup-details-page1' element={<Page1 />} />
+          <Route path='/startup-details-page2' element={<Page2 />} />
+          <Route path='/startup-details-page3' element={<Page3 />} />
 
         </Routes>
       </BrowserRouter>
