@@ -55,13 +55,14 @@ app.post("/register", async (req, res) => {
 
 
   try {
-
-
+    //const checkUser = User.findOne({email});
+    
 
     await User.create({
       email,
       password: hashpassword,
       mobile
+     
 
     });
     res.send({ status: "ok" })

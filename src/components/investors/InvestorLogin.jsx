@@ -275,30 +275,59 @@ const LoginForm = () => {
     console.log(formData);
     try {
       const url = "http://localhost:5000/register";
-      fetch(url, {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "Acess-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-          mobile: formData.mobile,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          alert("user registered");
-          verify.verifyOtp !== null
-            ? navigate("/investor-details")
-            : alert("invalid OTP");
-          console.log(data, "userRegister");
-        });
+      if (loginMode === "email") {
+        fetch(url, {
+          method: "POST",
+          crossDomain: true,
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "Acess-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password,
+            mobile: "Signed Up with email",
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            alert("user registered");
+            verify.verifyOtp !== null
+              ? navigate("/investor-details")
+              : alert("invalid OTP");
+            console.log(data, "userRegister");
+          });
+  
+        console.log("registered");
+      }
+      else{
+        fetch(url, {
+          method: "POST",
+          crossDomain: true,
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "Acess-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            email: "Signed Up with Mobile",
+            password: "N/A",
+            mobile: formData.mobile,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            alert("user registered");
+            verify.verifyOtp !== null
+              ? navigate("/investor-details")
+              : alert("invalid OTP");
+            console.log(data, "userRegister");
+          });
+  
+        console.log("registered");
 
-      console.log("registered");
+      }
     } catch (error) {
       if (error.response.status === 402) {
         console.log(error.response.data.message);
