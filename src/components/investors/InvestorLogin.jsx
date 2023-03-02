@@ -27,6 +27,7 @@ import {
   AlertIcon,
   AlertTitle,
   Divider,
+  Spinner,
 } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 
@@ -102,6 +103,12 @@ const LoginForm = () => {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(false);
   const [loginMode, setLoginMode] = useState("email");
+  const [loading, setLoading] = useState({
+    google: false,
+    contactVerify: false,
+    contactVerifyOTP: false,
+    email: false
+  });
 
   const [verify, setVerify] = useState({
     verifyButton: false,
@@ -162,6 +169,9 @@ const LoginForm = () => {
   };
 
   const onSignInSubmit = () => {
+    setLoading({
+      contactVerify: true
+    })
     onCaptchVerify();
 
     const phoneNumber = "+91" + formData.mobile;
@@ -171,7 +181,9 @@ const LoginForm = () => {
         // SMS sent. Prompt user to type the code from the message, then sign the
         // user in with confirmationResult.confirm(code).
         window.confirmationResult = confirmationResult;
-
+        setLoading({
+          contactVerify: false
+        })
         setVerify({
           verifyOtp: true,
         });
@@ -189,11 +201,17 @@ const LoginForm = () => {
   };
 
   const verifyCode = () => {
+    setLoading({
+      contactVerifyOTP: true
+    })
     window.confirmationResult
       .confirm(formData.otp)
       .then((result) => {
         // User signed in successfully.
         const user = result.user;
+        setLoading({
+          contactVerifyOTP: false
+        })
         console.log(user);
         alert("Verification Done");
         setVerify({
@@ -219,6 +237,9 @@ const LoginForm = () => {
         alert("User registered");
         console.log(data.user.displayName, data.user.email);
         const url = "https://visionx.onrender.com/register";
+        setLoading({
+          google: true
+        });
         fetch(url, {
           method: "POST",
           crossDomain: true,
@@ -232,11 +253,17 @@ const LoginForm = () => {
             password: data.user.uid,
             mobile: data.user.phoneNumber,
           }),
-        }).then((data) => {
-          console.log(data);
-          console.log("registered");
-          navigate("/investor-details");
-        });
+        })
+          .then((data) => {
+            console.log(data);
+            console.log("registered");
+            navigate("/investor-details");
+          })
+          .then(() => {
+            setLoading({
+              google: false
+            });
+          });
       })
       .catch((error) => {
         console.log(error);
@@ -351,10 +378,10 @@ const LoginForm = () => {
                 }
                 mt={4}
                 onClick={onSignInSubmit}
+                rightIcon={loading.contactVerify === true ? <Spinner /> : null}
               >
                 Verify
               </Button>
-
               
             </Flex>
 
@@ -376,6 +403,7 @@ const LoginForm = () => {
                   backgroundColor="blue"
                   textColor="white"
                   onClick={verifyCode}
+                  rightIcon={loading.contactVerifyOTP === true ? <Spinner /> : null}
                 >
                   Verify OTP
                 </Button>
@@ -429,7 +457,13 @@ const LoginForm = () => {
 
         {/* Sign With Google Button */}
 
-        <Button border={"1px"} width="full" mt={4} onClick={handleClick}>
+        <Button
+          rightIcon={loading.google === true ? <Spinner /> : null}
+          border={"1px"}
+          width="full"
+          mt={4}
+          onClick={handleClick}
+        >
           <FcGoogle align={"center"} />
           <Text> Sign in with Google</Text>
         </Button>
