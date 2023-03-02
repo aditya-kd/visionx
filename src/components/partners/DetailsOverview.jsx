@@ -129,14 +129,31 @@ const MoreDetails = () => {
               <Box textAlign={"center"} pt={'6'} pb={"12"} >
                 <Text as={"b"}>Upload Status</Text>
               </Box>
-              <Box className="KYC"></Box>
-              <Box className="MIS"></Box>
-              <Box className="Provisions"></Box>
-              <Box className="Audited Financials"></Box>
-              <Box className="Sales register"></Box>
-              <Box className="Valuation Repor"></Box>
-              <Box className="Funding Rounds"></Box>
-              <Box className="Future Rejection"> </Box>
+              <Box textAlign={"center"}  pt={6} pb={"12"} className={'KYC'}>
+                <Button as={"b"} backgroundColor={'white'} ><GrUploadOption size={'30'}/></Button>
+              </Box>
+              <Box textAlign={"center"} pt={6} pb={"12"}  className={'MIS'}>
+                <Button as={"b"} backgroundColor={'white'} ><GrUploadOption size={'30'}/></Button>
+              </Box>
+              <Box textAlign={"center"} pt={6} pb={"12"}  className={'Provisions'}>
+                <Button as={"b"} backgroundColor={'white'} ><GrUploadOption size={'30'}/></Button>
+              </Box>
+              <Box textAlign={"center"} pt={6} pb={"12"}  className={'Audited-Financials'}>
+                <Button as={"b"} backgroundColor={'white'} ><GrUploadOption size={'30'}/></Button>
+              </Box>
+              <Box textAlign={"center"} pt={6} pb={"12"}  className={'Sales-Register'}>
+                <Button as={"b"} backgroundColor={'white'} ><GrUploadOption size={'30'}/></Button>
+              </Box>
+              <Box textAlign={"center"} pt={6} pb={"12"} className={'Valuation-Report'}>
+                <Button as={"b"} backgroundColor={'white'} ><GrUploadOption size={'30'}/></Button>
+              </Box>
+              <Box textAlign={"center"} pt={6} pb={"12"}  className={'Funding-Rounds'}>
+                <Button as={"b"} backgroundColor={'white'} ><GrUploadOption size={'30'}/></Button>
+              </Box>
+              <Box textAlign={"center"} pt={6} pb={"12"}   className="Future-Rejection">
+                <Button as={"b"} backgroundColor={'white'} ><GrUploadOption size={'30'}/></Button>
+              </Box>
+
              
             </SimpleGrid>
           </Box>
