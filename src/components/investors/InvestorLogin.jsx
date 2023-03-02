@@ -274,7 +274,7 @@ const LoginForm = () => {
     e.preventDefault();
     console.log(formData);
     try {
-      const url = "http://localhost:5000/register";
+      const url = "https://visionx.onrender.com/register";
       if (loginMode === "email") {
         fetch(url, {
           method: "POST",
